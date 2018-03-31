@@ -1,0 +1,37 @@
+//
+Given n non-negative integers a1, a2, ..., an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.
+
+Note: You may not slant the container and n is at least 2. 
+
+思路：
+用容器水，两垂线是容器壁，x轴是容器底，要我们选2个垂线做出最大容量的容器装水。
+贪心算法可以用maxarea返回最大值，但是时间复杂度是O(N^2).
+另谋他法，因为容器要装的是水，所以决定能装水高度的是最低的容器壁，我们要求得是尽量高的壁，和尽量长的底。
+数据结构是数组，可以从两端开始遍历，也就是从最长的底开始遍历每一对容器壁，每一次循环都有一堆容器壁，一端高的留下，另一端
+矮的就把下标往内移动，开始下一次循环。
+以2端移动的方式，可以最节省时间的找出最大容器壁对。
+//
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int maxarea,temparea,a,b;
+        maxarea = 0;
+        a = 0;
+        b = height.size()-1;
+        if(a == b)
+            maxarea = min(height[a] , height[b]);
+        while(a != b)
+        {
+            temparea = ( b - a ) * min(height[a] , height[b]);
+            if (temparea > maxarea)
+            {
+                maxarea = temparea;
+            }
+            if (height[a] >= height[b])
+                b--;
+            else
+                a++;
+        }
+        return maxarea;
+    }
+};
