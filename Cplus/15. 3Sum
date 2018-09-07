@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>> result;
+        if(nums.size()<3) return result;
+        sort(nums.begin(),nums.end());
+        const int target = 0;
+        auto last = nums.end();
+        
+        for(vector<int>::iterator i = nums.begin();i < last-2;++i)//一层循环,最外环，遍历vector
+        {
+            vector<int>::iterator j = i + 1;
+            vector<int>::iterator k = last - 1;
+            if(i > nums.begin() && *i == *(i-1)) continue;//i跳过重复
+            while(j < k)//二层循环，j与k左右夹逼
+            {
+                if(*i + *j + *k < target)
+                {
+                    ++j;
+                    while(*j==*(j-1) && j<k) ++j;//j跳过重复
+                }else if(*i+*j+*k > target)
+                {
+                    --k;
+                    while(*k==*(k+1) && j<k) --k;//k跳过重复
+                }else
+                {
+                    result.push_back({*i,*j,*k});
+                    k--;
+                    j++;
+                    while(*j==*(j-1) && *k==*(k+1) && j<k) ++j;
+                }
+            }
+        }
+        return result;
+    }
+};
