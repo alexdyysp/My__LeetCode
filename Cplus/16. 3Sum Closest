@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+        int result = 0;
+        int min = INT_MAX;
+        sort(nums.begin(),nums.end());
+        
+        for(vector<int>::iterator i=nums.begin(); i != nums.end();i++)
+        {
+            vector<int>::iterator j = i+1;
+            vector<int>::iterator k = nums.end() - 1;
+            
+            while(j < k)
+            {
+                int sum = *i+*j+*k;
+                int gap = abs(sum - target);
+                if(gap < min)
+                {
+                    result = sum;
+                    min = gap;
+                }
+                if(sum < target) j++;
+                else k--;
+            }
+        }
+        return result;
+    }
+};
