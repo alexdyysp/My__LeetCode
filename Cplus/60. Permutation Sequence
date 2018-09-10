@@ -1,0 +1,45 @@
+class Solution {
+public:
+    string getPermutation(int n, int k) {
+        string s(n,'0');
+        for(int i=0;i<n;++i)
+            s[i]+=i+1;
+        for(int i=0;i<k-1;++i)
+            nextPermutation(s);
+        return s;
+    }
+private:
+    void nextPermutation(string& nums) {
+        string::iterator i;
+        string::iterator j=nums.end()-1;
+        for(i=nums.end()-1;i != nums.begin();i--)
+        {
+            if( *i > *(i-1) )
+                break;
+        }
+        if(i!=nums.begin())
+        {
+            while(j!=i-1 && *j<=*(i-1))
+            {
+                j--;
+            }
+            swap(*(i-1),*j);
+        }
+        reverse(i,nums.end());
+    }
+    template <class BidirectionalIterator>
+    void reverse (BidirectionalIterator first, BidirectionalIterator last)
+    {
+      while ((first!=last)&&(first!=--last)) {
+        iter_swap (first,last);
+        ++first;
+      }
+    }
+    template<class T>
+    void swap(T& a,T& b)
+    {
+        T c(a);
+        a=b;
+        b=c;
+    }
+};
