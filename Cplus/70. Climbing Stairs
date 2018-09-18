@@ -1,0 +1,21 @@
+class Solution {
+//***when n=44,time limit exceed
+public:
+    int climbStairs(int n) {
+        if(n==1) return 1;
+        if(n==2) return 2;
+        return climbStairs(n-1)+climbStairs(n-2);
+    }
+***//when n=44,time limit exceed
+    int climbStairs(int n) {
+        int prev = 0;
+        int cur = 1;
+        for(int i=1;i<=n;++i)
+        {
+            int tmp = cur;
+            cur += prev;
+            prev = tmp;
+        }
+        return cur;
+    }
+};
