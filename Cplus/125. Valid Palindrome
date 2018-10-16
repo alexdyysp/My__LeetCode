@@ -1,0 +1,14 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        transform(s.begin(),s.end(),s.begin(),::tolower);//transform the letter to into small letter
+        auto left=s.begin(),right=prev(s.end());
+        while(left<right){
+            if(!isalnum(*left)) ++left;//
+            else if(!isalnum(*right)) --right;//skip the number and symbol
+            else if(*left!=*right) return false;//check whether is equal
+            else {++left;--right;}
+        }
+        return true;
+    }
+};
