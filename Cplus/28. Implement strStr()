@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        if(needle.size()==0)  return 0;
+        int j,n;
+        n = haystack.size()-needle.size()+1;
+        for(int i=0;i<n;i++){//i is used to move tag of haystack
+            j=i;//j is a string tag used to check whether is equal
+            int k=0;//cout how many ch equal
+            while(haystack[j]==needle[k]&&k<needle.size()&&j<haystack.size()){
+                j++;
+                k++;
+            }
+            if(k==needle.size()) return i;
+        }
+        return -1;
+    }
+};
