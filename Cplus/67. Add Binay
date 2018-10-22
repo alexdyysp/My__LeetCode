@@ -1,0 +1,21 @@
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        string result;
+        size_t size_str=a.size()>b.size()?a.size():b.size();//set a max size of result string 
+        reverse(a.begin(),a.end());//reverse is better to process after
+        reverse(b.begin(),b.end());
+        int c = 0;
+        for(int i=0;i<size_str;i++){
+            int ai = i<a.size()?a[i]-'0':0;
+            int bi = i<b.size()?b[i]-'0':0;
+            int val = (ai+bi+c)%2;//operate now number
+            c = (ai+bi+c)/2;//carry
+            result.insert(result.begin(),val+'0');
+        }
+        if(c==1){//if the add is not end, then insert '1'
+            result.insert(result.begin(),'1');
+        }
+        return result;
+    }
+};
