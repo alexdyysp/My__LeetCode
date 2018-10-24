@@ -1,0 +1,37 @@
+class Solution {
+public:
+    string preProcess(string& s){
+        int n=s.length();
+        if(n==0) return"^$";
+        string ret = "^";
+        for(int i=0;i<n;i++) 
+            ret += "#" + s.substr(i,1);//insert "#"
+        ret += "#$";
+        return ret;
+    }
+    string longestPalindrome(string s) {
+        string T=preProcess(s);
+        int len = T.length();
+        int p[len];
+        int c=0,r=0;//r is i+p[i],the farest reach
+        for(int i=1;i<len-1;i++){
+            int i_m=2*c-i;//关于i的镜像i_m
+            p[i] = (r>i) ? min(r-i,p[i_m]) : 0 ;
+            //
+            while(T[i+1+p[i]]==T[i-1-p[i]]) p[i]++;//expand the range of the s[i]
+            if(i+p[i]>r){//if i is out of the area of r
+                c=i;
+                r=i+p[i];
+            }
+        }
+        int max_len=0;
+        int center_index=0;
+        for(int i=1;i<len-1;i++){
+            if(p[i]>max_len){
+                max_len = p[i];
+                center_index=i;
+            }
+        }
+        return s.substr((center_index-1-max_len)/2,max_len);
+    }
+};
