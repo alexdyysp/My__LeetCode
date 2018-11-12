@@ -1,0 +1,33 @@
+class Solution {
+public:
+    bool isMatch(string s, string p) {
+        return isMatch(s.c_str(),p.c_str());
+    }
+private:
+    bool isMatch(const char *s,const char *p){
+        bool pstar=false;
+        const char *str,*ptr;
+        for(str=s,ptr=p;*str!='\0';*str++,*ptr++){
+            switch(*ptr){
+                case '?':
+                    break;
+                case '*':
+                    pstar=true;
+                    s=str;p=ptr;
+                    while(*p=='*') p++;//skip '*'
+                    if(*p=='\0') return true;//"*\0" match everything
+                    str=s-1;ptr=p-1;
+                    //break;//this break use?
+                default:
+                    if(*str!=*ptr){
+                        if(pstar==false) return false;
+                        //s++;
+                        //str=s-1;
+                        ptr=p-1;
+                    }
+            }
+        }
+        while(*ptr=='*') ptr++;//maybe is end with "*****"
+        return *ptr=='\0';
+    }
+};
