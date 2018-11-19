@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        //s = s.c_str();
+        int length = 0;
+        string::iterator i = s.begin();
+        while(*i){
+            if(*i++ != ' ')
+                length++;
+            else if(*i && *i != ' ')
+                length = 0;
+        }
+        return length;
+    }
+};
