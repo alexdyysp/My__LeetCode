@@ -1,4 +1,9 @@
 class Solution {
+/*
+use the iterator of string class is easy
+the condition for if function should be useful and easy to realize
+so get the succession letter to judge whether the program need to initalize the value of length
+/*
 public:
     int lengthOfLastWord(string s) {
         //s = s.c_str();
