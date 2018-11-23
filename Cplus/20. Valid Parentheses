@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        string left = "([{";
+        string right = ")]}";
+        stack<char> st;
+        for(auto c:s){
+            if(left.find(c) != string::npos)//push left first
+                st.push(c);
+            else if(st.empty() || st.top()!=left[right.find(c)])//push right second
+                return false;
+            else
+                st.pop();
+        }
+        return st.empty();
+    }
+};
