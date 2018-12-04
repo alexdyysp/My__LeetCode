@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include <iostream>
+/*
+每3个瓶盖换一瓶水，求输入N瓶水最多能换来多少瓶水
+/*
+using namespace std;
+int main(){
+    int n ;//bottle numbers
+    while(true){
+        cin>>n;
+        if( n > 0 && n < 10000){
+            int m = n;//top numbers
+            while(m>=3){
+                m = m-3;
+                n = n+1;
+                m = m +1;
+            }
+            cout<<n<<endl;
+        }
+    }
+    return 0;
+}
