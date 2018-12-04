@@ -2,7 +2,7 @@
 #include<iostream>
 #include<stack>
 /*
-输入合法的括号对，输出每对括号的下标
+杈撳叆鍚堟硶鐨勬嫭鍙峰锛岃緭鍑烘瘡瀵规嫭鍙风殑涓嬫爣
 */
 using namespace std;
 void cout_parent(string s){
