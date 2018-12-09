@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<string> PN;
+        size_t i;
+        for(vector<string>::iterator iter=tokens.begin();iter!=tokens.end();++iter){
+            if(!is_opera(*iter))
+                PN.push(*iter);
+            else{
+                int y = stoi(PN.top());
+                PN.pop();
+                int x = stoi(PN.top());
+                PN.pop();
+                int z;
+                if(*iter == "+")
+                    z = x + y;
+                else if(*iter == "-")
+                    z = x - y;
+                else if(*iter == "*")
+                    z = x * y;
+                else if(*iter == "/")
+                    z = x / y;  
+                PN.push(to_string(z));
+            }   
+        }
+        return stoi(PN.top());
+    }
+private:
+    bool is_opera(string str){
+        return str.size()==1 && string("+-*/").find(str) != string::npos;
+    }
+};
