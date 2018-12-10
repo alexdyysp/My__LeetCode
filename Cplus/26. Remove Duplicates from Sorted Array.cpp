@@ -8,12 +8,8 @@ public:
         int index = 1;
         for(int i=1 ; i < nums.size() ; i++)
         {
-            if(nums[i] != nums[index-1])
+            if(nums[i] != nums[index-1])//因为是有序数组，所以移位时往前判断1位即可
                 nums[index++] = nums[i];
-                for (int j = 0; j < nums.size() ; j++)
-                    cout<<nums[j]<< " " ;
-                    cout<<endl;
-            cout<<"index="<<index<<endl;
         }
     return index+1;
     }
