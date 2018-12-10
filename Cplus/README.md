@@ -1,4 +1,4 @@
-C++ useful methods and functions
+Include C++ useful methods and functions
 ================================
 Some methods:
 -------------
@@ -22,3 +22,7 @@ bool is_opera(string str){
     return str.size()==1 && string("+-*/").find(str) != string::npos;
 }
 ```
+
+Tree
+----
+1. 
