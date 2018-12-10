@@ -9,12 +9,8 @@ public:
         int index = 2;
         for(int i = 2 ; i < nums.size() ; i++)
         {
-            if(nums[i]!=nums[index-2])
+            if(nums[i]!=nums[index-2])//往前判断两位
                 nums[index++] = nums[i];
-            for (int j = 0 ; j < nums.size(); j++)
-                cout<<nums[j]<< " " ;
-                cout<<endl;
-                cout<< "index = " <<index <<endl;
         }
         return index ;
     }
