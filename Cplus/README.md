@@ -4,10 +4,11 @@ Some alogrithm:
 ---------------
 1.Binary Tree
 --------------
-Mirrors Traversol
+Mirrors Traversol<br>
 1.find left subtree<br>
 2.find the rightest treenode<br>
 3.clue the node in step 2 with current root
+
 Some methods:
 -------------
 Some functions:
