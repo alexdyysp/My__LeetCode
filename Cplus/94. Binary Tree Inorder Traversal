@@ -58,6 +58,7 @@ public:
             swap(next,current);
             temp_level.clear();
         }
+        //reverse(result.begin(),result.end());//if want a buttom-up level traversal, use this line code to reverse the result
         return result;
     }
 };
