@@ -5,10 +5,13 @@ Some alogrithm:
 1.Binary Tree
 --------------
 *Mirrors Traversol*<br>
+- Time=O(n), Space=O(1)<br>
 - 1.find left subtree<br>
 - 2.find the rightest treenode<br>
-- 3.clue the node in step 2 with current root
-
+- 3.clue the node in step 2 with current root<br>
+- Mirror is a method of tree traversal, so it can nest a lot of operations on the binary tree<br>
+  
+  
 Some methods:
 -------------
 Some functions:
