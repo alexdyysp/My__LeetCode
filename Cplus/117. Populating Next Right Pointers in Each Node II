@@ -10,8 +10,8 @@ class Solution {
 public:
     void connect(TreeLinkNode *root) {
         while(root){
-            TreeLinkNode *prev = nullptr;
-            TreeLinkNode *next = nullptr;
+            TreeLinkNode *prev = nullptr; // the previous node of the same level
+            TreeLinkNode *next = nullptr; // the first node of next level
             for(;root;root=root->next){
                 if(!next) next = root->left?root->left:root->right;
                 if(root->left){
