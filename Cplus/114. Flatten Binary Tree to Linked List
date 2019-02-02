@@ -1,0 +1,22 @@
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void flatten(TreeNode* root) {
+        if(!root) return;
+        flatten(root->left);
+        flatten(root->right);
+        if(!root->left) return;//reach the most left, then return nothing
+        TreeNode *p = root->left;
+        while(p->right)
+            p=p->right;//reach the rightest node of the left subtree
+        p->right = root->right;//relink right subtree to the rightest node of the left subtree
+        root->right = root->left;//relink left subtree to right
+        root->left = nullptr;
+    }
+};
