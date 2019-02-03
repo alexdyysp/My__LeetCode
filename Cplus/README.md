@@ -2,6 +2,15 @@ Include C++ useful methods and functions
 ================================
 Some alogrithm:
 ---------------
+递归算法
+分治算法
+贪心算法
+动态规划
+
+  
+  
+Some methods:
+-------------
 1.Binary Tree
 --------------
 *Mirrors Traversol*<br>
@@ -10,10 +19,7 @@ Some alogrithm:
 - 2.find the rightest treenode<br>
 - 3.clue the node in step 2 with current root<br>
 - Mirror is a method of tree traversal, so it can nest a lot of operations on the binary tree<br>
-  
-  
-Some methods:
--------------
+
 Some functions:
 ---------------
 Array
