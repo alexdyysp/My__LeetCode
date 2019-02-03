@@ -25,6 +25,8 @@ Some methods:
 - 3.clue the node in step 2 with current root<br>
 - Mirror is a method of tree traversal, so it can nest a lot of operations on the binary tree<br>
 
+2.求集合幂集合<br>
+每个集合元素都有选择和不选择两种置入方法<br>
 Some functions:
 ---------------
 Array
