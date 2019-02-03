@@ -1,0 +1,45 @@
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        vector<vector<int>> result;
+        vector<int> path = nums;
+        result.push_back(path);
+        int i=0;
+        while(i < fac(nums.size())-1){
+            path = nextpermute(path);
+            result.push_back(path);
+            i++;
+        }
+        return result;
+    }
+private:
+    vector<int> nextpermute(vector<int>& path){
+        vector<int>::iterator i;
+        vector<int>::iterator j = path.end()-1;
+        //step1
+        for(i = path.end()-1; i != path.begin();i--){
+            if(*i > *(i-1))
+                break;
+        }
+        if(i!=path.begin()){
+            //step2
+            while(j!=i-1 && *j<=*(i-1)){
+                j--;
+            }
+            swap(*(i-1),*j);
+        }
+        reverse(i,path.end());
+        return path;
+    }
+    int fac(int n){	
+        int result = 1;
+        if(n<0)	return -1;
+        else if(n == 0)	return 1;
+        while (n>1){	
+            result *= n;
+            n--;
+        }
+        return result;
+    }
+};
