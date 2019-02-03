@@ -7,20 +7,20 @@ public:
     void nextPermutation(vector<int>& nums) {
         vector<int>::iterator i;
         vector<int>::iterator j=nums.end()-1;
-        //step1:´ÓÓÒÍù×óÕÒj=max{i|pi<pi+1}
-        for(i=nums.end();i != nums.begin();i--){
+        //step1:ä»å³å¾€å·¦æ‰¾j=max{i|pi<pi+1}
+        for(i=nums.end()-1;i != nums.begin();i--){
             if( *i > *(i-1) )
                 break;
         }
         if(i!=nums.begin()){
-            //step2:ÕÒµ½k=max{i|pi>pj}
+            //step2:æ‰¾åˆ°k=max{i|pi>pj}
             while(j!=i-1 && *j<=*(i-1)){
                 j--;
             }
             //step3:swap(pk,pj)
             swap(*(i-1),*j);
         }
-        //step4: µ¹ÖÃËùÓĞjºóµÄĞòÁĞ
+        //step4: å€’ç½®æ‰€æœ‰jåçš„åºåˆ—
         reverse(i,nums.end());
     }
     /*
