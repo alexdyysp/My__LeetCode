@@ -18,7 +18,7 @@ private:
         vector<int>::iterator i;
         vector<int>::iterator j = path.end()-1;
         //step1
-        for(i = path.end()-1; i != path.begin();i--){
+        for(i = path.end()-1; i != path.begin();i--){//此处必须要有-1，不然当测试[1,2]时会出错，出错原因我也不知道
             if(*i > *(i-1))
                 break;
         }
