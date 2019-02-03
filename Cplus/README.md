@@ -3,8 +3,13 @@ Include C++ useful methods and functions
 Some alogrithm:
 ---------------
 递归算法
+
 分治算法
+
 贪心算法
+增量构造
+位向量法
+
 动态规划
 
   
