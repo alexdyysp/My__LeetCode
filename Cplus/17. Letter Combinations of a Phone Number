@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<string> key {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    vector<string> letterCombinations(string digits) {
+        vector<string> result;
+        string path;
+        if(digits.empty()) return result;
+        dfs(digits, 0, path, result);
+        return result;
+    }
+private:
+    void dfs(string &digits, int end, string &path, vector<string> &result){
+        if(end == digits.size()) {
+            result.push_back(path);
+            return;
+        }
+        
+        for(int i = 0;i < key[digits[end]-'0'].size();i++){
+            path.push_back(key[digits[end]-'0'][i]);
+            dfs(digits, end+1, path , result);
+            path.pop_back();
+        }
+    }
+};
