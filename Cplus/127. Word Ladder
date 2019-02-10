@@ -1,0 +1,129 @@
+// transformat the vector<string> structure to unordered_set<string> one. and time limit exceed question is solved 
+class Solution {
+public:
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        unordered_set<string> wordDict(wordList.begin(), wordList.end());
+        unordered_set<string> head, tail, *phead, *ptail;
+        if(wordDict.find(endWord) == wordDict.end()) return 0;
+        head.insert(beginWord);
+        tail.insert(endWord);
+        int dist = 2;
+        while (!head.empty() && !tail.empty()) {
+            if (head.size() < tail.size()) {
+                phead = &head;
+                ptail = &tail;
+            }
+            else {
+                phead = &tail; 
+                ptail = &head;
+            }
+            unordered_set<string> temp; 
+            for (auto itr = phead -> begin(); itr != phead -> end(); itr++) {
+                string word = *itr;
+                wordDict.erase(word);
+                for (int p = 0; p < (int)word.length(); p++) {
+                    char letter = word[p];
+                    for (int k = 0; k < 26; k++) {
+                        word[p] = 'a' + k;
+                        if (ptail -> find(word) != ptail -> end())
+                            return dist;
+                        if (wordDict.find(word) != wordDict.end()) {
+                            temp.insert(word);
+                            wordDict.erase(word);
+                        }
+                    }
+                    word[p] = letter;
+                }
+            }
+            dist++;
+            swap(*phead, temp);
+        }
+        return 0; 
+    }
+};
+
+// use normal BFS method
+class Solution {
+public:
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        queue<string> toVisit;
+        int dist = 2;
+        wordList.insert(wordList.end(), endWord);
+        addLetter(beginWord, wordList, toVisit);
+        while(!toVisit.empty()){
+            int num = toVisit.size();
+            for(int i=0; i<num; i++){
+                string word = toVisit.front();
+                toVisit.pop();
+                if(word == endWord) return dist;
+                addLetter(word, wordList, toVisit);
+            }
+            dist++;
+        }
+    }
+private:
+    void addLetter(string word, vector<string>& wordList, queue<string>& toVisit){
+        remove(wordList.begin(), wordList.end(), word);
+        int flag = 0;
+        for(int i=0; i<word.length(); i++){
+            char letter = word[i];  
+            for(int j=0; j<26; j++){
+                word[i] = 'a' + j;
+                if(find(wordList.begin(), wordList.end(), word) != wordList.end()){
+                    toVisit.push(word);
+                    remove(wordList.begin(), wordList.end(), word);
+                }
+            }
+            word[i] = letter;
+        }
+            
+    }
+};
+
+//
+class Solution {
+public:
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        unordered_set<string> dict(wordList.begin(), wordList.end());           
+        queue<pair<string, int> > path;                        
+        int i;                                                                  
+        string word;                                                            
+                                                                                
+        int level = 1;                                                          
+                                                                                
+        pair<string, int> tmp(beginWord, level);                                
+        path.push(tmp);                                                         
+        while(!path.empty())                                                    
+        {                                                                       
+            pair<string, int> word_pair = path.front(); path.pop();             
+            word = word_pair.first;                                             
+            level = word_pair.second;                                           
+                                                                                
+            for(i=0; i<word.size(); i++)                                        
+            {                                                                   
+                string next_word = word;     
+                for(char c='a'; c<='z'; c++)                                    
+                {                                                               
+                    next_word[i] = c;                                           
+                    // if the dictionary cannot find the candidate              
+                    // transformation, then continue to next candidate          
+                    if(dict.find(next_word) == dict.end())                      
+                        continue;                                                                                      
+                    // if reaches endWord, then stop                            
+                    if(next_word == endWord)                                    
+                        return level+1;                                         
+                                                                                
+                    // delete this word from dict,                              
+                    dict.erase(next_word);                                      
+                                                                                
+                    // increase the BFS level                                   
+                    tmp.first = next_word;                                      
+                    tmp.second = level + 1;                                     
+                    path.push(tmp);                                                     
+                }                                                               
+            }                                                                                                                                       
+        }                                                                       
+                                                                                
+       return 0;                  
+    }
+};
