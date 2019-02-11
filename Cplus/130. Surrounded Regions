@@ -1,0 +1,47 @@
+class Solution {
+public:
+    void solve(vector<vector<char>>& board) {
+        int bc = board.size();      // cow
+        if(bc==0) return ;
+        int br = board[0].size();   // row
+        //step1: creat a 01flag矩阵,都是0.
+        vector<vector<int>> flag(bc,vector<int>(br));
+        for(int i=0; i<bc; i++)
+            for(int j=0; j<br; j++)
+                flag[i][j]=0;
+        //step2: 从边缘的O往里走，找到一个O，将对应flag矩阵元素值+1.并且做BFS算法走相邻非0值格子则+1
+        for(int i=0; i<bc; i++)
+            for(int j=0; j<br; j++)
+                if(i==0||i==bc-1||j==0||j==br-1) 
+                    if( !flag[i][j] && (board[i][j] == 'O'))
+                        bfs(i, j, board, flag);
+        //step3: 将flag中的所有0元素位置变X，0置O.
+        for(int i=1; i<bc-1; i++)
+            for(int j=1; j<br-1; j++)
+                if(flag[i][j]!=1)
+                    board[i][j] = 'X';
+    }
+private:
+    void bfs(int i, int j ,vector<vector<char>>& board, vector<vector<int>>& flag){
+        queue<pair<int,int>> path;
+        path.push(make_pair(i,j));
+        flag[i][j] = 1;
+        while(!path.empty()){
+            int r = path.front().first;
+            int c = path.front().second;
+            path.pop();
+            for(int x=-1; x<=1; x++)
+                for(int y=-1; y<=1; y++){
+                    if(x==0||y==0){
+                        int a = r+x;
+                        int b = c+y;
+                        if(a<0||b<0||a>=board.size()||b>=board[0].size()) continue;
+                        if(board[a][b] == 'O' && flag[a][b] != 1){
+                            flag[a][b] = 1;
+                            path.push(make_pair(a,b));
+                        }
+                    }
+                }
+        }
+    }
+};
