@@ -1,0 +1,47 @@
+// dfs
+class Solution {
+public:
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        int c = obstacleGrid.size();
+        int r = obstacleGrid[0].size();
+        return dfs(c, r, obstacleGrid);
+    }
+private:
+    int dfs(int m , int n, vector<vector<int>>& obstacleGrid){
+        if(m < 1 || n < 1 ) return 0;
+        if(obstacleGrid[m-1][n-1] == 1) return 0;
+        if(m == 1 && n==1) return 1;
+        return dfs(m -1, n, obstacleGrid) + dfs(m, n-1, obstacleGrid);
+    }
+};
+
+// dynamic programming 
+// this program need long type, or will runtime over for signed integer overflow: 
+// 1053165744 + 1579748616 cannot be represented in type 'int'
+class Solution {
+public:
+    long uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        int c = obstacleGrid.size();
+        int r = obstacleGrid[0].size();
+        long d[c][r] = {0};
+        int flagi=0;
+        for(int i = 0; i<c; i++) {
+            if(obstacleGrid[i][0]==1) flagi = 1;
+            d[i][0]=1-flagi;
+        }
+        int flagj=0;
+        for(int j = 0; j<r; j++) {
+            if(obstacleGrid[0][j]==1) flagj = 1;
+            d[0][j]=1-flagj;
+
+        }
+        for(int i=1; i<c; i++)
+            for(int j = 1; j<r; j++){
+                if(obstacleGrid[i][j]==1) 
+                    d[i][j]==0;
+                else
+                    d[i][j] = d[i-1][j] + d[i][j-1];
+            }
+        return d[c-1][r-1];
+    }
+};
