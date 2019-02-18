@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> result;
+        vector<int> path;
+        sort(candidates.begin(), candidates.end());
+        dfs(candidates, result, path, target, 0);
+        return result;
+    }
+private:
+    void dfs(vector<int>& candidates, vector<vector<int>>& result, vector<int>& path, int target, int start){
+        if(target == 0){
+            result.push_back(path);
+            return;
+        }
+        for(int i = start; i < candidates.size(); i++){
+            if(candidates[i] > target) return;
+            path.push_back(candidates[i]);
+            dfs(candidates, result, path, target - candidates[i], i); // change the current target to next target
+            path.pop_back();
+        }
+    }
+};
