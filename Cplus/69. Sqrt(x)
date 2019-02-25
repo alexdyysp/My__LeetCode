@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int mySqrt(int x) {
+        int left = 1;
+        int right = x / 2;
+        int last;
+        if ( x < 2) return x;
+        while(left <= right){
+            int mid = left + (right-left) / 2;
+            if(x / mid > mid){
+                left = mid + 1;     
+                last = mid;
+            }
+            else if(x / mid < mid)
+                right = mid - 1;
+            else
+                return mid;
+        }
+        return last;
+    }
+};
