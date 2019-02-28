@@ -16,3 +16,30 @@ private:
         return area;
     }
 };
+
+// T:O(N)  S:O(1)
+// Two Pointer Approach
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int maxarea = 0;
+        int start = 0;
+        int end = height.size()-1;
+        int area = 0;
+        while(start<end){
+            area = calArea(height, start, end);
+            maxarea = max(maxarea, area);
+            if(height[start]>height[end]) 
+                end--;
+            else
+                start++;
+        }
+        return maxarea;
+    }
+private:
+    int calArea(vector<int>& height, int left, int right){
+        int area;
+        area = abs(right-left) * min(height[left], height[right]); 
+        return area;
+    }
+};
