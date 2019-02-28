@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int last[255];
+        int start = 0;
+        fill(last, last+255, -1);
+        int maxlen = 0;
+        for(int i=0; i< s.size(); i++){
+            if(last[s[i]]>=start){
+                maxlen = max(i-start, maxlen);
+                start = last[s[i]] + 1; // update start and start new round
+            }
+            last[s[i]] = i;// update new location
+        }
+        return max((int)s.size() - start, maxlen);
+    }
+};
