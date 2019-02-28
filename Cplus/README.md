@@ -8,7 +8,7 @@ Some alogrithm:
 二分查找
 
 贪心算法：
-- 双端搜索
+- 双端搜索：int left,right; while(left < right)
 
 DFS: 算法走到底部才能判断解是否合法
 BFS:
