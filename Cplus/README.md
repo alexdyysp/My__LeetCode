@@ -39,7 +39,7 @@ Some functions:
 Array
 -----
 1. 将有序重复数列1，1，2，2，3，去除occur位重复成1，2，3：
-```
+```C++
 int index = occur;                      //起始从occur位判断
     for(int i = 2 ; i < nums.size() ; i++)
         if(nums[i]!=nums[index-occur])  //往前判断occur位，则可以接受occur位重复
@@ -50,7 +50,7 @@ int index = occur;                      //起始从occur位判断
 vector
 -------
 1. 拷贝一个多维vector结构:
-```
+```C++
         int n = triangle.size()-1;
         vector<vector<int>> temp;
         for(int i=0; i<=n; i++){
