@@ -46,6 +46,21 @@ int index = occur;                      //起始从occur位判断
             nums[index++] = nums[i];    //有重复则往前移一位
 ```
 
+
+vector
+-------
+1. 拷贝一个多维vector结构:
+```
+        int n = triangle.size()-1;
+        vector<vector<int>> temp;
+        for(int i=0; i<=n; i++){
+            vector<int> temp_sub(i+1,-1);
+            temp.push_back(temp_sub);
+        }
+```
+
+
+
 String
 ------
 1. 我们可以使用在指定string串中查找有无匹配字符，判断提取str是否为我们想要的字符串:
