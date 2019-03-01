@@ -47,6 +47,7 @@ int index = occur;                      //起始从occur位判断
 ```
 
 
+
 vector
 -------
 1. 拷贝一个多维vector结构:
@@ -58,8 +59,14 @@ vector
             temp.push_back(temp_sub);
         }
 ```
-
-
+定义空二维vector，再赋值
+```C++
+vector<vector <int> > ivec(m ,vector<int>(n)); //m*n的二维vector，注意两个 "> "之间要有空格！
+```
+定义并初始化二维数组
+```C++
+vector<vector <int> > ivec(m ,vector<int>(n,0)); //m*n的二维vector，所有元素初始化为0
+```
 
 String
 ------
