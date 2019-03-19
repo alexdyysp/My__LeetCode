@@ -12,8 +12,7 @@ using namespace std;
 ```C++
 while(scanf("%d %d",&x,&y)==2)
 		cout<<x<<' '<<y;
-```
-
+```  
 输入完毕之后先按Enter，再按ctrl+Z，最后再按Enter键，即可结束输入。Linux下，输入完毕后按ctrl+D即可结束输
 
 ```C++
@@ -23,8 +22,24 @@ int main()
     while (cin >> a >> b)
         cout << a + b << "\n";
     return 0;
-}
+}  
+```  
+用cin读取输入流
+
+```C++
+    int A,B,C,m;
+    string str;
+    getline(cin,str);
+    sscanf(str.c_str(), "%d %d %d %d", &A,&B,&C,&m);
+    int d[A][B][C];
+    int i=0,j=0,k=0;
+    char c;int temp;
+    cin>>d[i][j][k++];
+    while ((c = getchar()) != '\n')
+        cin >> d[i][j][k++];
 ```
+读取一整行, 并提供了读取一整行数据存入数组的方法
+
 
 2.文件读取与写入
 头文件iostream中包含着对输入输出流的定义。
