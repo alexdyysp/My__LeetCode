@@ -1,3 +1,16 @@
+/*
+25. Reverse Nodes in k-Group
+Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
+k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is.
+Example:
+
+Given this linked list: 1->2->3->4->5
+For k = 2, you should return: 2->1->4->3->5
+For k = 3, you should return: 3->2->1->4->5
+
+当时笔试时，输入输出都要带"[,]",所以格式很难搞，我得输入有错误
+当时ListNode初始化没搞好，所以没做出来
+*/
 #include<bits/stdc++.h>
 using namespace std;
 struct ListNode{
@@ -44,7 +57,7 @@ ListNode* reverseKGroup(ListNode* head, int k) {
             cur->next = prev?prev:new_next_group;
             prev = cur;
             cur = q;
-        }//use three points prev��cur��q to mark the node need to reverse��in the end��prev is the head node of the next group need to reverse
+        }//use three points prev¡¢cur¡¢q to mark the node need to reverse£¬in the end£¬prev is the head node of the next group need to reverse
         return prev;
 }
 void printList(ListNode* head){
