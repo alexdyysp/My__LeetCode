@@ -1,3 +1,7 @@
+/*
+判断listnode是否存在环路？
+vector即可，不需要实现List
+*/
 #include<bits/stdc++.h>
 #include<stdio.h>
 using namespace std;
