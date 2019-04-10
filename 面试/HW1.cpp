@@ -1,3 +1,8 @@
+/* 输入： 2 abc 123456789
+   输出： 12345678 90000000 abc00000
+   
+   输入 2个字符，输出成8位的一个个串，然后排序输出
+*/
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
