@@ -13,10 +13,10 @@ int main(){
     for(int i=0;i<str_num;i++){
         string s;
         cin>>s;
-        if(s.size()%8 != 0){
+        if(s.size()%8 != 0){   // 关键判断
             s = s + "00000000";
         }
-        while(s.size() >= 8){
+        while(s.size() >= 8){  // 关键一步
             string temp = s.substr(0,8);
             ss.push_back(temp);
             s = s.substr(8);
