@@ -1,0 +1,14 @@
+class Solution {
+public:
+    bool canCross(vector<int>& stones) {
+        map<int, set<int> > step = {{0, {0}}};
+        for(int pos : stones){
+            for (auto it = step[pos].begin(); it != step[pos].end(); it++) {
+                if (*it - 1 >=0 )  step[pos + *it - 1].insert(*it - 1);  // k-1 steps
+                step[pos + *it].insert(*it);    //k steps
+                step[pos + *it + 1].insert(*it+1);  //k+1 steps
+            }
+        }
+        return step[stones.back()].size();
+    }
+};
