@@ -1,6 +1,6 @@
 Include C++ useful methods and functions
 ================================
-Some alogrithm:
+# Some alogrithm:
 ---------------
 递归算法
 
@@ -30,7 +30,7 @@ BFS:
 
   
   
-Some methods:
+# Some methods:
 -------------
 1.Binary Tree
 --------------
