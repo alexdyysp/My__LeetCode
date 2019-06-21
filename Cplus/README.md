@@ -79,6 +79,10 @@ vector
             temp.push_back(temp_sub);
         }
 ```
+定义一维vector:
+```C++
+vector <int> ivec(m, value);
+```
 定义空二维vector，再赋值
 ```C++
 vector<vector <int> > ivec(m ,vector<int>(n)); //m*n的二维vector，注意两个 "> "之间要有空格！
