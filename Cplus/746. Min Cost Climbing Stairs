@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int minCostClimbingStairs(vector<int>& cost) {
+        vector<int> record(cost.size()+1, -1);
+        record[0] = 0;record[1] = 0;
+        int result = solve(cost, record, cost.size());
+        return result;
+    }
+private:
+    int solve(vector<int>& cost, vector<int>& record, int idx){
+        if(idx<2) return 0;
+        //if(idx>=cost.size()) return 0;
+        if(record[idx] > -1) return record[idx];
+        //if(record[idx] == cost.size()-1) return record[cost.size()-1];
+        record[idx] = min(solve(cost, record, idx-1) + cost[idx-1], solve(cost, record, idx-2) + cost[idx-2]);
+        return record[idx];
+    }
+};
