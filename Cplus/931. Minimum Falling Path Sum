@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int minFallingPathSum(vector<vector<int>>& A) {
+        //A[0].size()
+        for(int i = A.size()-2; i>=0; i--){
+            for(int j=0; j<A.size(); j++){
+                int tmp = A[i+1][j];
+                if(j>0)
+                    tmp = min(tmp, A[i+1][j-1]);
+                if(j+1<A[0].size())
+                    tmp = min(tmp, A[i+1][j+1]);
+                A[i][j] += tmp; 
+            }
+        }
+        int result = A[0][0];
+        for(int i=0; i<A[0].size(); i++)
+            result = min(result, A[0][i]);
+        return result;
+    }
+};
