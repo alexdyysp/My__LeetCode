@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int mincostTickets(vector<int>& days, vector<int>& costs) {
+        vector<int> dp(days[days.size()-1]+1, 0); // notice the size
+        // tag travel day
+        for (auto day:days)
+            dp[day] = costs[0];
+        // cost[1] and cost[2]
+        for (int i=1; i<dp.size(); i++){
+            if (!dp[i])
+                dp[i] = dp[i-1];
+            else{
+            dp[i] = dp[i-1] + costs[0];
+            dp[i] = min(dp[i], dp[max(0, i-7)] + costs[1]); // compare cost[0] and cost[1]
+            dp[i] = min(dp[i], dp[max(0, i-30)] + costs[2]); // compare cost[1] and cost[2]
+            }
+        }
+        return dp[dp.size()-1];
+    }
+};
