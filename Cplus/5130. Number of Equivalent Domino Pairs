@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int numEquivDominoPairs(vector<vector<int>>& dominoes) {
+        int result = 0;
+        map<pair<int, int>, int> tmp;
+        pair<int, int> tmp_p;
+        for (int i=0; i<dominoes.size(); i++){
+            tmp_p.first = dominoes[i][0] + dominoes[i][1];
+            tmp_p.second = abs(dominoes[i][0] - dominoes[i][1]);
+            tmp[tmp_p] ++;
+
+        }
+        for(map<pair<int, int>, int>::iterator it=tmp.begin(); it!=tmp.end(); it++){
+            if(it->second >= 2)
+                result += it->second*(it->second-1)/2;
+        } 
+        return result;
+    }
+};
