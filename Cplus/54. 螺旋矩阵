@@ -1,0 +1,53 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> result;
+        int R = matrix.size();
+        if(!R)
+            return result;
+        int C = matrix[0].size();
+        if(!C)
+            return result;
+        // 预先建立标记矩阵，比原矩阵规模大一圈
+        vector<vector<int>> flag(R+2, vector<int>(C+2, 0));
+        for(int i=0; i<R+2; i++){
+            flag[i][0] = 1;
+            flag[i][C+1] = 1;
+        }
+        for(int j=0; j<C+2; j++){
+            flag[0][j] = 1;
+            flag[R+1][j] = 1;
+        }
+        int R_step[4] = {0, 1,  0, -1}; //step i
+        int C_step[4] = {1, 0, -1,  0}; //step j
+        int way = 0;
+        int i = 0;
+        int j = 0;
+        //cout<<"forword "<<i<<' '<<j<<endl;
+        int s = 0;
+        // 仅仅遇到flag=1就转向
+        while(true){
+            if(!flag[i+1][j+1]){
+                result.push_back(matrix[i][j]);
+                flag[i+1][j+1] = 1;
+                s++;
+                if(s>=R*C)
+                    break;
+                i += R_step[way];
+                j += C_step[way];
+                //cout<<"forword "<<i<<' '<<j<<endl;
+            }else{
+                // rollback
+                i -= R_step[way];
+                j -= C_step[way];
+                //cout<<"1rolback "<<i<<' '<<j<<endl;
+                // turn around
+                way = (way+1)%4;
+                i += R_step[way];
+                j += C_step[way];
+                //cout<<"2rolback "<<i<<' '<<j<<endl;
+            }
+        }
+        return result;
+    }
+};
