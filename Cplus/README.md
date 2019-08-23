@@ -42,31 +42,31 @@ vector<vector <int> > ivec(m ,vector<int>(n,0)); //m*n的二维vector，所有�
 1. 断链操作。将链表 l 切掉前 n 个节点，并返回后半部分的链表头。
 ```C++
 ListNode* cut(ListNode* head, int n){ 
-  auto p = head; 
+  ListNode* p = head; 
   while (--n && p) p = p->next;  
   if (!p) return nullptr; 
-  auto next = p->next; 
+  ListNode* tmp = p->next; // 有必要保存中间节点，因为下一步需要断链!
   p->next = nullptr; 
-  return next; 
+  return tmp; 
 } 
 ```
-2. 按顺序合并l1与l2链表
+2. 按顺序合并L1与L2链表
 ```C++
-ListNode* merge(ListNode* l1, ListNode* l2) { 
+ListNode* merge(ListNode* L1, ListNode* L2) { 
   ListNode dummyHead(0); 
-  auto p = &dummyHead; 
-  while (l1 && l2) {
-    if (l1->val < l2->val) {
-      p->next = l1; 
-      p = l1; 
-      l1 = l1->next; 
+  ListNode* p = &dummyHead; 
+  while (L1 && L2) {
+    if (L1->val < L2->val) {
+      p->next = L1; 
+      p = L1; 
+      L1 = L1->next; 
     } else {
-      p->next = l2; 
-      p = l2; 
-      l2 = l2->next; 
+      p->next = L2; 
+      p = L2; 
+      L2 = L2->next; 
     }
   }
-  p->next = l1 ? l1 : l2; 
+  p->next = L1 ? L1 : L2; 
   return dummyHead.next; 
 }
 ```
