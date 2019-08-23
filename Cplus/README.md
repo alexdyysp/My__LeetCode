@@ -130,6 +130,39 @@ vector<vector <int> > ivec(m ,vector<int>(n)); //m*n的二维vector，注意两�
 vector<vector <int> > ivec(m ,vector<int>(n,0)); //m*n的二维vector，所有元素初始化为0
 ```
 
+链表
+----
+1. 断链操作。将链表 l 切掉前 n 个节点，并返回后半部分的链表头。
+```C++
+ListNode* cut(ListNode* head, int n){ 
+  auto p = head; 
+  while (--n && p) p = p->next;  
+  if (!p) return nullptr; 
+  auto next = p->next; 
+  p->next = nullptr; 
+  return next; 
+} 
+
+2. 按顺序合并l1与l2链表
+```C++
+ListNode* merge(ListNode* l1, ListNode* l2) { 
+  ListNode dummyHead(0); 
+  auto p = &dummyHead; 
+  while (l1 && l2) { 
+    if (l1->val < l2->val) { 
+      p->next = l1; 
+      p = l1; 
+      l1 = l1->next; 
+    } else { 
+      p->next = l2; 
+      p = l2; 
+      l2 = l2->next; 
+    } 
+  } 
+  p->next = l1 ? l1 : l2; return dummyHead.next; 
+}
+```
+
 String
 ------
 1. 我们可以使用在指定string串中查找有无匹配字符，判断提取str是否为我们想要的字符串:
