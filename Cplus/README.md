@@ -1,7 +1,7 @@
 # C++ useful methods and functions
 ================================
 
-##Some functions:
+## Some functions:
 ------------------
 ### Array
 ----------
