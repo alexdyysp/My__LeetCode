@@ -1,23 +1,10 @@
-C++ useful methods and functions
+# C++ useful methods and functions
 ================================
 
-# Some methods:
--------------
-1.Binary Tree
---------------
-*Mirrors Traversol*<br>
-- Time=O(n), Space=O(1)<br>
-- 1.find left subtree<br>
-- 2.find the rightest treenode<br>
-- 3.clue the node in step 2 with current root<br>
-- Mirror is a method of tree traversal, so it can nest a lot of operations on the binary tree<br>
-
-2.求集合幂集合<br>
-每个集合元素都有选择和不选择两种置入方法<br>
-Some functions:
----------------
-Array
------
+##Some functions:
+------------------
+### Array
+----------
 1. 将有序重复数列1，1，2，2，3，去除occur位重复成1，2，3：
 ```C++
 int index = occur;                      //起始从occur位判断
@@ -26,10 +13,8 @@ int index = occur;                      //起始从occur位判断
             nums[index++] = nums[i];    //有重复则往前移一位
 ```
 
-
-
-vector
--------
+### vector
+---------
 1. 拷贝一个多维vector结构:
 ```C++
         int n = triangle.size()-1;
@@ -52,8 +37,8 @@ vector<vector <int> > ivec(m ,vector<int>(n)); //m*n的二维vector，注意两�
 vector<vector <int> > ivec(m ,vector<int>(n,0)); //m*n的二维vector，所有元素初始化为0
 ```
 
-链表
-----
+### 链表
+---------
 1. 断链操作。将链表 l 切掉前 n 个节点，并返回后半部分的链表头。
 ```C++
 ListNode* cut(ListNode* head, int n){ 
@@ -86,8 +71,8 @@ ListNode* merge(ListNode* l1, ListNode* l2) {
 }
 ```
 
-String
-------
+### String
+-----------
 1. 我们可以使用在指定string串中查找有无匹配字符，判断提取str是否为我们想要的字符串:
 ```C++
 bool is_opera(string str){
@@ -100,3 +85,9 @@ Tree
 *基础*:
 1. 前中后序遍历二叉树,和Morris遍历<br>
 2. 计算二叉树深度<br>
+3. Mirrors Traversol
+- Time=O(n), Space=O(1)<br>
+- 1.find left subtree<br>
+- 2.find the rightest treenode<br>
+- 3.clue the node in step 2 with current root<br>
+- Mirror is a method of tree traversal, so it can nest a lot of operations on the binary tree<br>
