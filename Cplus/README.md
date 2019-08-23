@@ -38,6 +38,16 @@ vector<vector <int> > ivec(m ,vector<int>(n,0)); //m*n的二维vector，所有�
 
 ### 链表
 ---------
+0. Definition for singly-linked list.
+```C++ 
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+```
+
+
 1. 断链操作。将链表 l 切掉前 n 个节点，并返回后半部分的链表头。
 ```C++
 ListNode* cut(ListNode* head, int n){ 
