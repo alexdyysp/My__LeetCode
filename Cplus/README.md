@@ -142,7 +142,7 @@ ListNode* cut(ListNode* head, int n){
   p->next = nullptr; 
   return next; 
 } 
-
+```
 2. 按顺序合并l1与l2链表
 ```C++
 ListNode* merge(ListNode* l1, ListNode* l2) { 
