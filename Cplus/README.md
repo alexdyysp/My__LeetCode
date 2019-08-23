@@ -16,12 +16,12 @@ int index = occur;                      //起始从occur位判断
 ---------
 1. 拷贝一个多维vector结构:
 ```C++
-        int n = triangle.size()-1;
-        vector<vector<int>> temp;
-        for(int i=0; i<=n; i++){
-            vector<int> temp_sub(i+1,-1);
-            temp.push_back(temp_sub);
-        }
+int n = triangle.size()-1;
+vector<vector<int>> temp;
+for(int i=0; i<=n; i++){
+    vector<int> temp_sub(i+1,-1);
+    temp.push_back(temp_sub);
+}
 ```
 定义一维vector:
 ```C++
