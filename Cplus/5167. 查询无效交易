@@ -1,0 +1,54 @@
+# include<string>
+class Solution {
+public:
+    vector<string> invalidTransactions(vector<string>& transactions) {
+        set<string> result;
+        for (int i =0; i<transactions.size(); i++){
+            bool flag = false;
+            vector<string> tmp;
+            StrSplit(transactions[i],",",tmp);
+            string name = tmp[0];
+            int time = stoi(tmp[1]);
+            int price = stoi(tmp[2]);
+            string city = tmp[3];
+            if (price>1000){
+                result.insert(transactions[i]);
+            }
+            for (int j=i+1;j<transactions.size();j++){
+                vector<string> tmp1;
+                StrSplit(transactions[j],",",tmp1);
+                string name_1 = tmp1[0];
+                int time_1 = stoi(tmp1[1]);
+                int price_1 = stoi(tmp1[2]);
+                string city_1 = tmp1[3];
+                if(city == city_1 || name_1 != name) continue;
+                if(city_1 != city && name_1 == name && abs(time_1-time)<=60){
+                    result.insert(transactions[j]);
+                    flag = true;
+                    break;
+                    }
+            }
+            if (flag)
+                result.insert(transactions[i]);
+        }
+        vector<string> res;
+        res.assign(result.begin(), result.end());
+        return res;
+    }
+    
+private:
+    void StrSplit(const string& src, const string& sep, vector<string>& dst){
+    string s;
+    for (string::const_iterator it = src.begin(); it != src.end(); it++){
+        if (sep.find(*it) != string::npos){
+            if (s.length()) dst.push_back(s);
+            s.clear();
+        }
+        else
+            s += *it;
+    }
+
+    if (s.length())
+        dst.push_back(s);
+    }
+};
