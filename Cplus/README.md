@@ -88,7 +88,23 @@ bool is_opera(string str){
     return str.size()==1 && string("+-*/").find(str) != string::npos;
 }
 ```
+2. 分割字符串，并将分割后的字段保存进vector
+```C++
+void StrSplit(const string& src, const string& sep, vector<string>& dst){
+    string s;
+    for (string::const_iterator it = src.begin(); it != src.end(); it++){
+        if (sep.find(*it) != string::npos){
+            if (s.length()) dst.push_back(s);
+            s.clear();
+        }
+        else
+            s += *it;
+    }
 
+    if (s.length())
+        dst.push_back(s);
+    }
+```
 Tree
 ----
 *基础*:
