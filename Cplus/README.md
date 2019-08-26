@@ -117,6 +117,13 @@ void StrSplit(const string& src, const string& sep, vector<string>& dst){
 ```
 Tree
 ----
+- 计算树的结点个数
+```C++
+int nodecount(TreeNode* root){
+    if (!root) return 0;
+    return nodecount(root->left) + nodecount(root->right) + 1;
+}
+```
 *基础*:
 1. 前中后序遍历二叉树,和Morris遍历<br>
 2. 计算二叉树深度<br>
