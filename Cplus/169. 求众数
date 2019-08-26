@@ -1,0 +1,9 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        // 先排序
+        sort(nums.begin(), nums.end());
+        // 找中间，一定是众数
+        return nums[nums.size()/2];
+    }
+};
