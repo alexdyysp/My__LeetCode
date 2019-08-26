@@ -11,6 +11,16 @@ int index = occur;                      //起始从occur位判断
         if(nums[i]!=nums[index-occur])  //往前判断occur位，则可以接受occur位重复
             nums[index++] = nums[i];    //有重复则往前移一位
 ```
+2. 数组排序
+```C++
+// sort using a standard library compare function object
+std::sort(s.begin(), s.end(), std::greater<int>());
+
+// sort using a lambda expression 
+std::sort(s.begin(), s.end(), [](int a, int b) {
+    return a > b;   
+});
+```
 
 ### vector
 ---------
