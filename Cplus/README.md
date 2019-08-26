@@ -117,6 +117,18 @@ void StrSplit(const string& src, const string& sep, vector<string>& dst){
 ```
 Tree
 ----
+0. 定义树结构
+```C++
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+ ```
 - 计算树的结点个数
 ```C++
 int nodecount(TreeNode* root){
