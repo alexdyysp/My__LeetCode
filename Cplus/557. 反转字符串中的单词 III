@@ -1,0 +1,58 @@
+/*
+思路：双指针思想，时间复杂度O(n),空间复杂度O(1)。
+使用front跟back指向单词的首尾，然后反转并更新两个指针的值
+ */ 
+ class Solution { 
+ public: 
+  string reverseWords(string s) { 
+    if (s.size() == 0)  return s; 
+    int front = 0, back = 0;        //front为要反转的单词的首字母，back为要反转的单词的末字母的下一位 
+    for (int i = 0; i < s.size() - 1; i++) { 
+      if (s[i] != ' ')  back++;
+      else{
+        reverse(s.begin() + front, s.begin() + back); 
+        front = back + 1; //当前back指向空格，所以front要从空格的下一个即下一个单词的首字母开始 
+        back = front;//front跟back同一线 
+        } 
+     }                            //此时最后一部分还没有反转，因为s的末尾不是空格，所以此时back应等于最后一个单词的末字母 
+     back++;
+     reverse(s.begin() + front, s.begin() + back); //reverse的最后一个参数是要反转的结尾的下一位，back指向s的最后一位，所以要+1 
+     return s;
+  }
+};
+
+//分解再组合
+class Solution {
+public:
+    string reverseWords(string s) {
+        vector<string> restmp;
+        string result;
+        StrSplit(s, " ", restmp);
+        for(int i=0; i<restmp.size(); i++)
+            result += reversestr(restmp[i])+" ";
+        result.pop_back();
+        return result;
+    }
+private:
+    void StrSplit(const string& src, const string& sep, vector<string>& dst){
+        string s;
+        for (string::const_iterator it = src.begin(); it != src.end(); it++){
+            if (sep.find(*it) != string::npos){
+                if (s.length()) dst.push_back(s);
+                s.clear();
+            }
+            else
+                s += *it;
+        }
+
+        if (s.length())
+            dst.push_back(s);
+    }
+    
+    string reversestr(string s){
+        for(int i=0; i<s.length()/2; i++)
+            swap(s[i], s[s.length()-1-i]);
+        return s;
+    }
+};
+
