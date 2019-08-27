@@ -1,0 +1,24 @@
+/*
+ *用的贪心+回溯做的，即优先选择复制+粘贴，然后递归处理下一步，
+ *如果此方案不通再回溯回来，用粘贴取代复制粘贴的策略。 
+ *因为优先复制粘贴的操作使得长度每次都翻倍，呈指数级扩张，
+ *所以会大幅减少尝试的次数，即使失败也会很快就回溯。如果碰到极大的测试样例，可能性能会下降
+*/
+class Solution {
+public:
+    int minSteps(int n) {
+        // Only Start with copy
+        return dfs(1, n, 1, 0);
+    }
+private:
+    int dfs(int A_len, int n, int copy_len, int depth){
+        if(A_len> n) return -1;
+        if(A_len==n) return depth;
+        // copy + paste first
+        int res = dfs(A_len*2, n, A_len, depth+2);
+        if(res > 0) return res;
+        // paste second
+        return dfs(A_len + copy_len, n, copy_len, depth+1);
+        
+    }
+};
