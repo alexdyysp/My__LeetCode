@@ -33,10 +33,10 @@ BFS:
 ```C++
   int robot(int x, int y)     // 机器人的输入 
   if （边界条件）              // 什么时候不用造了（自己就能干完） 
-    return 0; i
-  nt a = robot(x1, y1);       // 造一个小的自己帮忙干活 
+    return 0; 
+  int a = robot(x1, y1);       // 造一个小的自己帮忙干活 
   int b =  robot(x2, y2);     // 再造一个小的自己帮忙干活 
-  return a + b;               // 自己要做的就是把别人的成果组装起
+  return a + b;               // 自己要做的就是把别人的成果组装起来
 ```
 
 ## 图
