@@ -1,5 +1,8 @@
 # C++ useful methods and functions
-
+```C++
+#include <bits/stdc++.h>
+using namespace std;
+```
 ## Some functions:
 
 ### Array
