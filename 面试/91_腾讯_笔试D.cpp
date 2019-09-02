@@ -1,7 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 /*
+/*
+窗口只能显示N个字符
+输入：abaabaabaaaaa
+字符串只能显示: abaabaaba
 
+给你一连串字符串，求出可以反复copypaste形成的上述显示
+a
+aba
+abb
+ba
+...
+...
+
+时间复杂度要求很高，我加了很多预判才过的
+*/
 */
 int main(){
     int N;
