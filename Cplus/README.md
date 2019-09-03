@@ -49,6 +49,12 @@ vector<vector <int> > ivec(m ,vector<int>(n)); //m*n的二维vector，注意两�
 vector<vector <int> > ivec(m ,vector<int>(n,0)); //m*n的二维vector，所有元素初始化为0
 ```
 
+### 哈希表
+- 使用迭代器打印哈希表resTree,哈希表默认key从小到大排序
+```C++
+for(auto it=resTree.begin(); it!=resTree.end(); it++)
+    cout<<it->first->val<<" "<<it->second->val<<endl;
+```
 ### 链表
 ---------
 0. Definition for singly-linked list.
