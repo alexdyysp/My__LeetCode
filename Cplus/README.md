@@ -135,6 +135,10 @@ struct TreeNode {
     TreeNode *right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  };
+ 
+// 赋值
+TreeNode* root = new TreeNode(3);
+root->left = new TreeNode(5);
  ```
 - 计算树的结点个数
 ```C++
