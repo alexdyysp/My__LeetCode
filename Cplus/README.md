@@ -48,7 +48,12 @@ vector<vector <int> > ivec(m ,vector<int>(n)); //m*n的二维vector，注意两�
 ```C++
 vector<vector <int> > ivec(m ,vector<int>(n,0)); //m*n的二维vector，所有元素初始化为0
 ```
-
+- 求vector的最大值
+```C++
+vector<int>::iterator max=max_element(dist.begin(),dist.end());
+cout<<"最大值是："<<*max<<endl;
+//相应的还有min_element()
+```
 ### 哈希表
 - 使用迭代器打印哈希表resTree,哈希表默认key从小到大排序
 ```C++
