@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<vector<int>> findSubsequences(vector<int>& nums) {
+        //sort(nums.begin(),nums.end());
+        set<vector<int>> res;
+        vector<int> path;
+        dfs(nums, path, res, 0);
+        return vector<vector<int>>(res.begin(),res.end());
+    }
+private:
+    void dfs(vector<int>& nums, vector<int> path, set<vector<int>>& res,int start){
+        // export
+        if(path.size()>=2) res.insert(path);
+        if(start>=nums.size()) return;
+        // judge incriment
+        int last;
+        if(!path.size())
+            last=-101;
+        else
+            last=path.back();
+        // start dfs as 01背包问题
+        path.push_back(nums[start]);
+        if(last<=nums[start]){
+            dfs(nums, path, res, start+1);
+        }
+        path.pop_back();
+        dfs(nums, path,res, start+1);
+    }
+};
