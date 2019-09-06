@@ -10,12 +10,15 @@ public:
             // 有可能越界(即没有硬币组成i元，则直接填入-1)
             for(int j=0; j<coins.size(); j++){
                 if(i-coins[j]<0) continue;
-                else dp[i] = min(dp[i], dp[i-coins[j]]+1);
+                // 1+min 和 min{1+min} 有什么区别？
+                else dp[i] = min(dp[i], 1+dp[i-coins[j]]);
+                cout<<i<<" "<<coins[j]<<" "<<dp[i]<<endl;
             }
+            cout<<"dp "<<i<<" "<<dp[i]<<endl;
 
         }
-        //for(int i=0;i<dp.size();i++)
-        //    cout<<dp[i]<<",";
+        for(int i=0;i<dp.size();i++)
+            cout<<dp[i]<<",";
 
         return dp[amount]>amount?-1:dp[amount];
     }
