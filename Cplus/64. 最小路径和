@@ -1,0 +1,55 @@
+// dp 
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& grid) {
+        vector<vector<int>> dp;
+        for(int i=0; i<grid.size(); i++)
+            dp.push_back(vector<int>(grid[0].size(),0));
+
+        int pre = 0;
+        for(int i=0; i<grid.size(); i++){
+            dp[i][0] = pre + grid[i][0];
+            pre = dp[i][0];
+        }
+        /*
+        for(int i=0; i<grid.size(); i++)
+            for(int j=0; j<grid[0].size(); j++)
+                if(j==grid[0].size()-1)
+                    cout<<dp[i][j]<<endl;
+                else
+                    cout<<dp[i][j]<<",";
+        */
+        pre = 0;
+        for(int i=0; i<grid[0].size(); i++){
+            dp[0][i] = pre + grid[0][i];
+            pre = dp[0][i];
+        }
+
+        for(int i=1; i<grid[0].size(); i++){
+            for(int j=1; j<grid.size(); j++){
+                dp[j][i] = grid[j][i] + min(dp[j-1][i], dp[j][i-1]);
+            }
+        }
+        return dp[grid.size()-1][grid[0].size()-1];
+    }
+};
+
+// dfs
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& grid) {
+        vector<int> path;
+        dfs(grid, 0, 0, 0, path);
+        for(int i=0;i<path.size();i++)
+            cout<<path[i]<<",";
+        return *min_element(path.begin(), path.end());
+    }
+private:
+    void dfs(vector<vector<int>>& grid, int x, int y, int sum,vector<int>& path){
+        if(x>=grid.size() || y>=grid[0].size()) return;
+        if(x==grid.size()-1&&y==grid[0].size()-1)
+            path.push_back(sum+grid[x][y]);
+        dfs(grid, x+1, y, sum+grid[x][y], path);
+        dfs(grid, x, y+1, sum+grid[x][y], path);
+    }
+};
