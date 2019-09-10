@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        if(numRows==0) return {};
+        vector<vector<int>> result(1, vector<int>(1,1));
+        
+        for(int i=2; i<=numRows; i++){
+            vector<int> tmp(i,1);
+            vector<int> restmp = result.back();
+            for(int index=0; index<restmp.size()-1; index++){
+                tmp[index+1] = restmp[index] + restmp[index+1];
+            }
+            result.push_back(tmp);
+        }
+        return result;
+    }
+};
