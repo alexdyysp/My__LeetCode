@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        vector<vector<int>> result;
+        if(!nums.size()) return result;
+        if(nums.size()<4) return result;
+        if(nums.size()==4 && accumulate(nums.begin(),nums.end(),0)==target){result.push_back(nums); return result;}
+        sort(nums.begin(),nums.end());
+        int a = 0;
+        int b = a+1;
+        set<vector<int>> st;
+        for(int a=0; a<nums.size()-3; a++){
+            if(a>0&&nums[a]==nums[a-1]) continue;
+            for( int b=a+1; b<nums.size()-2; b++){
+                if(b>a+1&&nums[b]==nums[b-1]) continue;
+                int c = b+1;
+                int d = nums.size()-1;
+                // double point
+                while(c<d){
+                    //cout<<nums[a]<<" "<<nums[b]<<" "<<nums[c]<<" "<<nums[d]<<endl;
+                    int cur = nums[a]+nums[b]+nums[c]+nums[d];
+                    if(cur == target) {
+                        vector<int> path = {nums[a], nums[b]};
+                        path.push_back(nums[c]);path.push_back(nums[d]);
+                        st.insert(path);
+                    }
+                    if(cur > target) d--;
+                    else c++;
+                }
+                
+            }
+        }
+        result.assign(st.begin(), st.end());
+        return result;
+    }
+};
