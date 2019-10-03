@@ -54,11 +54,26 @@ vector<int>::iterator max=max_element(dist.begin(),dist.end());
 cout<<"最大值是："<<*max<<endl;
 //相应的还有min_element()
 ```
-### 哈希表
+### 哈希表HashMap
+- 初始化Map
+```C++
+    map<string, vector<string>> StrMap;
+```
+- C++中，若一个Map里没有该键，则会自动创建一个
+```
+    // 可以直接对Map存储vector添加元素
+    StrMap[tmp].push_back(s);
+```
 - 使用迭代器打印哈希表resTree,哈希表默认key从小到大排序
 ```C++
 for(auto it=resTree.begin(); it!=resTree.end(); it++)
     cout<<it->first->val<<" "<<it->second->val<<endl;
+```
+
+- 智能指针遍历HashMap
+```C++
+    for(auto &m:StrMap)
+        result.push_back(m.second);
 ```
 ### 链表
 ---------
