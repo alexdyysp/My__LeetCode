@@ -60,10 +60,16 @@ cout<<"最大值是："<<*max<<endl;
     map<string, vector<string>> StrMap;
 ```
 - C++中，若一个Map里没有该键，则会自动创建一个
-```
+```C++
     // 可以直接对Map存储vector添加元素
     StrMap[tmp].push_back(s);
 ```
+
+- 如果只想确认有无键，不想创建这个键
+```C++
+    HashMap.count(key);
+```
+
 - 使用迭代器打印哈希表resTree,哈希表默认key从小到大排序
 ```C++
 for(auto it=resTree.begin(); it!=resTree.end(); it++)
