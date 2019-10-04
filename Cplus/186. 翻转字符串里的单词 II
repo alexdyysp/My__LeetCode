@@ -1,0 +1,14 @@
+class Solution {
+public:
+    void reverseWords(vector<char>& s) {
+        reverse(s.begin(), s.end());
+        int end = 0;
+        while (end < s.size()) {
+            int start = end;
+            while (end < s.size() && s[end] != ' ')
+                ++end;
+            reverse(s.begin()+start, s.begin()+end);
+            ++end;
+        }
+    }
+};
