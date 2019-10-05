@@ -1,0 +1,57 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> boundaryOfBinaryTree(TreeNode* root) {
+        vector<int> result;
+        if(!root) return result;
+        vector<int> leftnode;
+        vector<int> rightnode;
+        vector<int> leafnode;
+        // order 
+        LeftOrder(root->left, leftnode);
+        RightOrder(root->right, rightnode);
+        LeafOrder(root, leafnode);
+
+        // combination
+        if(leafnode.size()+leftnode.size()+rightnode.size()!=1)
+            result.push_back(root->val);
+        for(auto node:leftnode)
+            result.push_back(node);
+        for(int i=leftnode.size()?1:0; i<(rightnode.size()?leafnode.size()-1:leafnode.size()); i++){
+            result.push_back(leafnode[i]);
+        }
+        for(int i=rightnode.size()-1; i>=0; i--)
+            result.push_back(rightnode[i]);
+        
+        return result;
+    }
+private:
+    void LeftOrder(TreeNode* root, vector<int>& left){
+        if(!root) return;
+        else left.push_back(root->val);
+        if(root->left) LeftOrder(root->left, left);
+        else LeftOrder(root->right, left);
+    }
+    
+    void RightOrder(TreeNode* root, vector<int>& right){
+        if(!root) return;
+        else right.push_back(root->val);
+        if(root->right) RightOrder(root->right, right);
+        else RightOrder(root->left, right);
+    }
+    
+    void LeafOrder(TreeNode* root, vector<int>& leaf){
+        if(!root) return;
+        if(!root->left & !root->right) leaf.push_back(root->val);
+        if(root->left) LeafOrder(root->left, leaf);
+        if(root->right) LeafOrder(root->right, leaf);
+    }
+};
