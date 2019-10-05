@@ -1,0 +1,20 @@
+class Solution:
+    def mostVisitedPattern(self, username: List[str], timestamp: List[int], website: List[str]) -> List[str]:
+        data = [[username[index], timestamp[index], website[index]] for index in range(len(username))]
+        # sort username first, timestamps second
+        data.sort()
+        # create Track record
+        UserTrack = collections.defaultdict(list)
+        for u, t, w in data:
+            UserTrack[u].append(w);
+        
+        # count the browser 
+        res = collections.defaultdict(set)
+        for u, w in UserTrack.items():
+            for i in itertools.combinations(w, 3):
+                res[i].add(u)
+        
+        # 如果有多个满足要求的答案，那么就请返回按字典序排列最小的那个
+        res = sorted(res.items(), key=lambda x:(-len(x[1]), x[0]))
+        # print(res)
+        return res[0][0]
