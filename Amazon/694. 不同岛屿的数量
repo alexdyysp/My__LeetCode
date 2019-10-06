@@ -1,0 +1,42 @@
+class Solution {
+public:
+    int numDistinctIslands(vector<vector<int>>& grid) {
+        int C = grid.size();
+        if(C==0) return 0;
+        int R = grid[0].size();
+        vector<vector<int>> path(C+2, vector<int>(R+2, 0));
+        for(int i=0; i<C+2; i++){
+            path[i][0]=1;
+            path[i][R+1]=1;
+        }
+        for(int i=0; i<R+2; i++){
+            path[0][i]=1;
+            path[C+1][i]=1;
+        }
+        set<vector<int>> rec;
+        for(int i=0; i<C; i++){
+            for(int j=0; j<R; j++){
+                if(path[i+1][j+1]==1 || grid[i][j]==0) continue;
+                vector<int> rectmp; 
+                dfs(i, j, grid, path, rectmp, i, j);
+                //cout<<"path: "<<rectmp<<endl;
+                rec.insert(rectmp);
+            }
+        }
+
+        return rec.size();
+    }
+private:
+    void dfs(int x, int y, vector<vector<int>>& grid, vector<vector<int>>& path, vector<int>& rec, int si, int sj){
+        if(path[x+1][y+1]==1 || grid[x][y]!=1 ) {
+            return;
+        }
+        else path[x+1][y+1]=1;
+        rec.push_back((y-sj)+(x-si)*grid.size());
+        //cout<<x<<y<<" "<<rec<<endl;
+        dfs(x, y+1, grid, path, rec, si, sj);
+        dfs(x+1, y, grid, path, rec, si, sj);
+        dfs(x, y-1, grid, path, rec, si, sj);
+        dfs(x-1, y, grid, path, rec, si, sj);
+    }
+};
