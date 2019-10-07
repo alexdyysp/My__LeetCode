@@ -1,0 +1,24 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<TreeNode*> splitBST(TreeNode* root, int V) {
+        vector<TreeNode*> result(2, nullptr);
+        if(!root) return result;
+        if(root->val > V){
+            result = splitBST(root->left, V);
+            root->left = result[1];
+            return {result[0], root};
+        }
+        result = splitBST(root->right, V);
+        root->right = result[0];
+        return {root, result[1]};
+    }
+};
