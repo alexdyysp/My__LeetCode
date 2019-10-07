@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int maximumMinimumPath(vector<vector<int>>& A) {
+        int C = A.size(); int R = A[0].size();
+        vector<vector<int>> path(C, vector<int>(R,INT_MAX));
+        queue<pair<int, int>> qpath;
+        vector<vector<int>> way = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        // start point
+        qpath.push({0,0}); path[0][0] = A[0][0];
+        bool flag = false;
+        while(!qpath.empty()){
+            pair<int, int> tmp = qpath.front();
+            qpath.pop();
+            for(int i = 0; i < 4; i++){
+                int x = tmp.first + way[i][0], y = tmp.second + way[i][1];
+                if(x >= 0 && x < C && y >= 0 && y < R){
+                    if(path[x][y] == INT_MAX || min(path[tmp.first][tmp.second], A[x][y])>path[x][y]){
+                        qpath.push({x, y});
+                        path[x][y] = min(path[tmp.first][tmp.second], A[x][y]);
+
+                    } 
+                }
+            }
+        }
+        /*
+        for(auto x:path){
+            for(auto y:x)
+                cout<<y<<" ";
+            cout<<endl;
+        }
+        */
+        return path[C-1][R-1];
+    }
+};
