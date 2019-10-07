@@ -1,0 +1,18 @@
+class Solution {
+public:
+    vector<vector<int>> indexPairs(string text, vector<string>& words) {
+        vector<vector<int>> result;
+        for (int i=0;i<words.size();i++){
+            string w = words[i];
+            int index=text.find(w);
+            // find all word until out of boudary
+            while (index!=-1){
+                result.push_back(vector<int>{index, index+w.length()-1});
+                index = text.find(w,index+1);
+            }
+        }
+        // sort the result
+        sort(result.begin(),result.end());
+        return result;
+    }
+};
