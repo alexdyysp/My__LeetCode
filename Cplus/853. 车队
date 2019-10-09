@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int carFleet(int target, vector<int>& position, vector<int>& speed) {
+        int car = position.size();
+        if(!car) return 0;
+        sortPosSpe(position, speed);
+        vector<double> times(car,0);
+        for(int i=0; i<car; i++)
+            times[i] = (double)(target-position[i])/speed[i];
+        
+        int result = 1;
+        double pretime = times[0];
+        for(int i=1; i<car; i++){
+            if(times[i]<=pretime)
+                continue;
+            pretime = times[i];
+            result++;
+        }
+
+        return result;
+    }
+private:
+    void sortPosSpe(vector<int>& position, vector<int>& speed){
+        int car = position.size();
+        for(int i=0; i<car-1; i++){
+            int maxindex = i;
+            for(int j=i; j<car; j++){
+                if(position[maxindex]<position[j])
+                    maxindex = j;
+            }
+            int tmp = position[i];
+            position[i] = position[maxindex];
+            position[maxindex] = tmp;
+            tmp = speed[i];
+            speed[i] = speed[maxindex];
+            speed[maxindex] = tmp;
+        }
+    }
+};
