@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> partitionLabels(string S) {
+        vector<int> result;
+        map<char, int> WordIndex;
+        // 记录单词最后一次出现下标
+        for(int i=0; i<S.length(); i++)
+            WordIndex[S[i]] = i;
+        // 遍历
+        int index = 0;
+        while(index<S.length()){
+            int end = WordIndex[S[index]];
+            for(int j=index+1; j<end; j++){
+                end = max(end, WordIndex[S[j]]);
+            }
+            result.push_back(end-index+1);
+            index = end + 1;
+        }
+        
+        return result;
+    }
+};
