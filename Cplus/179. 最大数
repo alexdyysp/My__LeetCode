@@ -1,0 +1,26 @@
+class Solution {    
+public:
+    string largestNumber(vector<int>& nums) {
+        if(*max_element(nums.begin(), nums.end())==0) return "0";
+        vector<string> strnums;
+        for(int i=0; i<nums.size(); i++)
+            strnums.push_back(to_string(nums[i]));
+        sort(strnums.begin(), strnums.end(), cmp);
+        string result;
+        for(int i=0; i<strnums.size(); i++)
+            result += strnums[i];
+        
+        return result;
+    }
+private:
+    static bool cmp(const string& a , const string& b){
+        int minlen = min(a.length(), b.length());
+        for(int i=0; i<minlen; i++)
+            if(a[i]!=b[i]) return a[i]>b[i];
+        for(int i=minlen; i<a.length(); i++)
+            if(a[i]!=b[0]) return a[i]>b[0];
+        for(int i=minlen; i<b.length(); i++)
+            if(a[0]!=b[i]) return a[0]>b[i];
+        return a+b > b+a;
+    }
+};
