@@ -1,3 +1,4 @@
+// dfs
 class Solution {
 public:
     int findCircleNum(vector<vector<int>>& M) {
@@ -17,6 +18,42 @@ private:
         for(int j=0; j<M.size(); j++){
             if(M[i][j]==1 && visited[j]==0)
                 dfs(M, visited, j);
+        }
+    }
+};
+
+// 并查集
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& M) {
+        vector<int> parent(M.size(),0);
+        for(int i=0; i<M.size(); i++) {parent[i]=i;}
+        for(int i=0; i<M.size(); i++){
+            for(int j=0; j<M.size(); j++){
+                if(M[i][j]==1 && i!=j)
+                    connect(parent, i, j);
+            }
+        }
+        int result=0;
+        for(int i=0; i<M.size(); i++){
+            if(parent[i]==i) result++;
+        }
+        return result;
+    }
+private:
+    int find(vector<int>& parent, int index){
+        if(parent[index]==index)
+            return index;
+        else
+            return find(parent, parent[index]);
+    }
+    
+    void connect(vector<int>& parent, int x, int y){
+        int xp = find(parent, x);
+        int yp = find(parent, y);
+        if(xp != yp){
+            // different root
+            parent[xp] = yp;
         }
     }
 };
