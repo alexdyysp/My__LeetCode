@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool isPossibleDivide(vector<int>& nums, int k) {
+        map<int, int> mp;
+        for (int i : nums) ++mp[i];
+        for (auto it = mp.begin(); it != mp.end(); ++it) {
+            while (it->second) {
+                for (int j = 0; j < k; ++j) {
+                    if (mp[it->first+j] == 0) return false;
+                    --mp[it->first+j];
+                }
+            }
+        }
+        return true;
+    }
+};
