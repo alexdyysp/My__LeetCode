@@ -150,6 +150,26 @@ void StrSplit(const string& src, const string& sep, vector<string>& dst){
         dst.push_back(s);
     }
 ```
+3. streamstring来分割字符串
+```C++
+        stringstream is(path);
+        vector<string> strs;
+        string res = "", tmp = "";
+        while(getline(is, tmp, '/')) {
+            cout<<tmp<<endl;
+        }
+        /*
+        input: "/a//b////c/d//././/.."
+        output: 
+                a
+                b
+                c
+                d
+                .
+                .
+                ..
+        */
+```
 Tree
 ----
 0. 定义树结构
