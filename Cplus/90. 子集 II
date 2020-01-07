@@ -1,0 +1,47 @@
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        set<vector<int>> result;
+        sort(nums.begin(), nums.end());
+        vector<int> path;
+        dfs(nums, 0, result, path);
+        return vector<vector<int>>(result.begin(), result.end());
+    }
+private:
+    void dfs(vector<int>& nums, int start, set<vector<int>>& result, vector<int>& path){
+        if(start>=nums.size()){
+            result.insert(path);
+            return;
+        }
+        path.push_back(nums[start]);
+        dfs(nums, start+1, result, path);
+        path.pop_back();
+        dfs(nums, start+1, result, path);
+    }
+};
+
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<vector<int>> res = {{}};
+        if(nums.empty()) return res;
+        // 排序
+        sort(nums.begin(), nums.end());     
+        int start = 0;
+        for (int i = 0; i < nums.size(); ++i) {
+            int len = res.size();
+            // 新数字，全部遍历
+            if (i>0 && nums[i]!=nums[i-1])
+                start = 0;          
+            for(int j = start; j < len; ++j){
+                vector<int> tmp = res[j];
+                tmp.push_back(nums[i]);
+                res.push_back(tmp);
+            }
+            // 重复数字,从上一轮新添加的部分开始
+            start = res.size() - (len - start); 
+        }
+
+        return res;
+    }
+};
