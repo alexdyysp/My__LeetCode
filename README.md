@@ -96,3 +96,47 @@ for 状态1 in 状态1的所有取值：
 3. 合并
   + 将两个元素所在的集合合并为一个集合。
   + 通常来说，合并之前，应先判断两个元素是否属于同一集合，这可用上面的“查找”操作实现。
+
+### 排列组合
+1. 子集. input: {1,2,3} output: {[[3],[1],[2],[1,2,3],[1,3],[2,3],[1,2],[]]}
+```C++
+// bit iterator
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        int S = nums.size();
+        int N = 1 << S;
+        vector<vector<int> > res;
+        for (int i = 0; i < N; ++i) {
+            vector<int> v;
+            for (int j = 0; j < S; ++j)
+                if (i & (1 << j))
+                    v.push_back(nums[j]);
+            res.push_back(v);
+        }
+        return res;
+    }
+};
+// dfs recursion
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> result;
+        sort(nums.begin(), nums.end());
+        vector<int> path;
+        subsets(nums, path, 0, result);
+        return result;
+    }
+private:
+    void subsets(vector<int>& nums, vector<int>& path, int step, vector<vector<int>>& result){
+        if(step >= nums.size()){
+            result.push_back(path); //zero subset
+            return;
+        }
+        subsets(nums, path, step+1, result);
+        path.push_back(nums[step]);
+        subsets(nums, path, step+1, result);
+        path.pop_back();
+    }
+};
+```
