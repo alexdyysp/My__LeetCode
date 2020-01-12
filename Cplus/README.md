@@ -153,8 +153,7 @@ void StrSplit(const string& src, const string& sep, vector<string>& dst){
 3. streamstring来分割字符串
 ```C++
         stringstream is(path);
-        vector<string> strs;
-        string res = "", tmp = "";
+        string tmp = "";
         while(getline(is, tmp, '/')) {
             cout<<tmp<<endl;
         }
@@ -168,6 +167,7 @@ void StrSplit(const string& src, const string& sep, vector<string>& dst){
                 .
                 .
                 ..
+          此方法，严格按tmp字符分割
         */
 ```
 ```C++
@@ -176,7 +176,9 @@ void StrSplit(const string& src, const string& sep, vector<string>& dst){
     vector<string> tmp;
     stringstream ss(s);
     while (ss >> str) tmp.push_back(str);
-    /* tmp = ['the', 'sky', 'is', 'blue'] */
+    /* tmp = ['the', 'sky', 'is', 'blue'] 
+      此方法可跳过开头末尾的空格
+    */
 ```
 Tree
 ----
