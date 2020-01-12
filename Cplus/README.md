@@ -170,6 +170,14 @@ void StrSplit(const string& src, const string& sep, vector<string>& dst){
                 ..
         */
 ```
+```C++
+    string s = "the sky is blue";
+    string str;
+    vector<string> tmp;
+    stringstream ss(s);
+    while (ss >> str) tmp.push_back(str);
+    /* tmp = ['the', 'sky', 'is', 'blue'] */
+```
 Tree
 ----
 0. 定义树结构
