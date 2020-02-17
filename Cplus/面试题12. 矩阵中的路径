@@ -1,0 +1,36 @@
+class Solution {
+    vector<vector<bool>> record;
+    int c, r;
+public:
+    bool exist(vector<vector<char>>& board, string word) {
+        c = board.size(); r = board[0].size();
+        bool result;
+        for(int i=0; i<c; i++){
+            for(int j=0; j<r; j++){
+                if(word[0] == board[i][j]){
+                    vector<vector<bool>> tmp(c ,vector<bool>(r, 0));
+                    record = tmp;
+                    result = dfs(board, word, i, j, 0);
+                    if(result) return true;
+                }
+            }
+        }
+        
+        return result;
+    }
+private:
+    bool dfs(vector<vector<char>>& board, string word, int x, int y, int index){
+        if(index >= word.size()-1) return true;
+        bool result = false;
+        if(x >= 0 && x < c && y>=0 && y< r && board[x][y]==word[index] && !record[x][y]) index++;
+        else return result;
+        record[x][y] = true;
+        result = dfs(board, word, x, y-1, index) || dfs(board, word, x, y+1, index) || dfs(board, word, x-1, y, index) || dfs(board, word, x+1, y, index);
+        
+        if(!result){
+            record[x][y]=false;
+        }
+        
+        return result;
+    }
+};
