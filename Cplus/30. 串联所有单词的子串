@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<int> findSubstring(string s, vector<string>& words) {
+        if (s.empty() || words.empty()) return {};
+        int slen = s.size(); int wordslen = words[0].size(); int wordssize = words.size();
+        vector<int> result;
+        // statics words
+        unordered_map<string, int> wordcnt;
+        int targetASCII = 0;
+        for(int i=0; i<wordssize; i++){
+            wordcnt[words[i]]++;
+            for(int j=0; j<wordslen; j++){
+                targetASCII += words[i][j];
+            }
+        }
+        int tmpASCII = 0;
+        for(int i=0; i<wordslen*wordssize; i++) tmpASCII += s[i];
+        // match s
+        for(int i=0; i<=slen-wordslen*wordssize; i++){
+            if(tmpASCII == targetASCII) {
+                unordered_map<string,int> strcnt;
+                for(int j=0; j<wordssize; j++){
+                    string find = s.substr(i+j*wordslen, wordslen);
+                    strcnt[find]++;
+                    if(!wordcnt.count(find)) break;
+                }
+                for(auto &i : strcnt) cout<<i.first<<" ";
+                if(strcnt == wordcnt) result.push_back(i);
+            }
+            tmpASCII = tmpASCII-s[i]+s[i+wordslen*wordssize];
+        }
+        
+        return result;
+    }
+};
