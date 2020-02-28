@@ -123,6 +123,19 @@ ListNode* merge(ListNode* L1, ListNode* L2) {
   p->next = L1 ? L1 : L2; 
   return dummyHead.next; 
 }
+
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode* dummy = new ListNode(0);
+        ListNode* pre = dummy;
+        while(l1 && l2){
+            if(l1->val < l2->val) {pre->next = l1; l1=l1->next;}
+            else {pre->next = l2; l2=l2->next;}
+            pre = pre->next;
+        }
+        if(l1==nullptr && l2!=nullptr) pre->next = l2;
+        if(l1!=nullptr && l2==nullptr) pre->next = l1;
+        return dummy->next;
+    }
 ```
 
 ### String
