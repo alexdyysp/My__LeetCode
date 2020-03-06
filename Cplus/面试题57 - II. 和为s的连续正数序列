@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<vector<int>> findContinuousSequence(int target) {
+        vector<vector<int>> result;
+        int left = 1; int right = 2;
+        while(left<right && right<=(target+1)/2){
+            int sum = trySum(left, right);
+            if(sum == target){
+                result.push_back(path(left, right));
+                left++;
+            }else if(sum < target){
+                right++;
+            }else {
+                left++;
+            }
+        }
+        
+        return result;
+    }
+private:
+    int trySum(int left, int right){
+        return (left + right) * (right - left + 1) / 2;
+    }
+    
+    vector<int> path(int left, int right){
+        vector<int> path;
+        for(int i=left; i<=right; i++)
+            path.push_back(i);
+        
+        return path;
+    }
+};
