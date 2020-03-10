@@ -1,0 +1,25 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+    int res;
+public:
+    int diameterOfBinaryTree(TreeNode* root) {
+        int rootdepth = depth(root);
+        return res;
+    }
+private:
+    int depth(TreeNode* root){
+        if(!root) return 0;
+        int L = depth(root->left);  // 左儿子为根的子树的深度
+        int R = depth(root->right); // 右儿子为根的子树的深度
+        res = max(res, L + R);      // 计算d_node即L+R 并更新ans
+        return max(L, R) + 1;       // 返回该节点为根的子树的深度
+    }
+};
