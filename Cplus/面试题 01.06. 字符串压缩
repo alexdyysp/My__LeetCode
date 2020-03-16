@@ -1,0 +1,23 @@
+class Solution {
+public:
+    string compressString(string S) {
+        int len = S.length();
+        int slow = 0;
+        int fast = 0;
+        int tmp=0;
+        string res;
+        while(fast!=len+1){
+            if(fast==slow) res.push_back(S[slow]);
+            if(S[fast]==S[slow]){
+                tmp++;
+                fast++;
+            }else{
+                res += to_string(tmp);
+                slow=fast;
+                tmp=0;
+            }
+        }
+        
+        return res.length()<=len?res:S;
+    }
+};
