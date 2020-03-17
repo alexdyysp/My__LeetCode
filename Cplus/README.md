@@ -54,6 +54,13 @@ vector<int>::iterator max=max_element(dist.begin(),dist.end());
 cout<<"最大值是："<<*max<<endl;
 //相应的还有min_element()
 ```
+- 打印二维数组
+```C++
+for(int i=0; i<v.size(); i++){
+    for(int j=0; j<v[0].size(); j++) cout<<v[i][j]<<" ";
+    cout<<endl;
+}
+```
 ### 哈希表HashMap
 - 初始化Map
 ```C++
