@@ -87,6 +87,11 @@ for(auto it=resTree.begin(); it!=resTree.end(); it++)
 ```C++
     for(auto &m:StrMap)
         result.push_back(m.second);
+        
+    for (auto p : count) {
+        int k = p.first;
+        int v = p.second;
+    }
 ```
 ### 链表
 ---------
