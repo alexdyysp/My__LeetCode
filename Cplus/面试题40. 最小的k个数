@@ -1,0 +1,42 @@
+class Solution {
+public:
+    vector<int> getLeastNumbers(vector<int>& arr, int k) {
+        int n = arr.size();
+        if(n==0) return arr;
+        if(k==0) return vector<int>();
+        kquicksort(arr, 0, n-1, k-1);
+        //for(int i=0; i<n; i++) cout<<arr[i]<<" ";
+        return vector<int>(arr.begin(), arr.begin()+k);
+    }
+    
+private:
+    void kquicksort(vector<int>& arr, int left, int right, int k){
+
+        int split = quicksort(arr, left, right);
+        //cout<<split<<endl;
+        //for(int i=0; i<arr.size()-1; i++) cout<<arr[i]<<" ";
+        //cout<<endl;
+        if(split == k){
+            return;
+        // must have +1/-1 !!!
+        }else if(split < k){
+            kquicksort(arr, split+1, right, k);
+        }else if(split > k){
+            kquicksort(arr, left, split-1, k);
+        }
+    }
+    
+    int quicksort(vector<int>& arr, int left, int right){
+        if(left<right){
+            int tmp = arr[left];
+            while(left<right){
+                while(left < right && arr[right] >= tmp) right--;
+                if(left < right) arr[left] = arr[right];
+                while(left < right && arr[left] < tmp) left++;
+                if(left < right) arr[right] = arr[left];
+            }
+            arr[left] = tmp;
+        }
+        return left;
+    }
+};
