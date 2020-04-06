@@ -1,0 +1,18 @@
+class Solution {
+    public int lengthLongestPath(String input) {
+        int n = input.length();
+        if(n==0) return 0;
+        int res = 0;
+        int[] dp = new int[n+1];
+        for(String s:input.split("\n")){
+            int level = s.lastIndexOf("\t") + 2;
+            int len = s.length() - level + 1;  // len is true length of this folder/file
+            if(s.contains("."))
+                res = Math.max(res, dp[level-1] + len);
+            else
+                dp[level] = dp[level-1] + len + 1;  // dp[level] is true length with '\'
+        }
+        
+        return res;
+    }
+}
