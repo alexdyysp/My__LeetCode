@@ -1,0 +1,26 @@
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList();
+        dfs(res, new StringBuilder(), n, n);
+        return res;
+    }
+    
+    public void dfs(List<String> res, StringBuilder path, int left, int right){
+        if(left == 0 && right == 0){
+            res.add(path.toString());
+            return;
+        }
+        
+        if(left > 0){
+            path.append('(');
+            dfs(res, path, left-1, right);
+            path.deleteCharAt(path.length() - 1);
+        }
+        
+        if(left < right){
+            path.append(')');
+            dfs(res, path, left, right-1);
+            path.deleteCharAt(path.length() - 1);
+        }
+    }
+}
