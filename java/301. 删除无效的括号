@@ -1,0 +1,47 @@
+class Solution {
+    public List<String> removeInvalidParentheses(String s) {
+        Set<String> level = new HashSet<String>();
+        level.add(s);
+        if(isValid(s)) return new ArrayList(level);
+        while(true){
+            Set<String> validExpressions = filter(level);
+            if(!validExpressions.isEmpty()) return new ArrayList(validExpressions);
+            Set<String> nextlevel = new HashSet<String>(); 
+            for(String str:level){
+                for(int i=0; i<str.length(); i++){
+                    StringBuilder tmp = new StringBuilder(str);
+                    if(tmp.charAt(i) == '(' || tmp.charAt(i) == ')') {
+                        nextlevel.add(tmp.deleteCharAt(i).toString());
+                    }
+                        
+                }
+                
+            }
+            
+            level = nextlevel;
+        }
+    }
+    
+    public boolean isValid(String s){
+        int len = s.length();
+        int valid = 0;
+        for(int i=0; i<len; i++){
+            if(s.charAt(i) == '(') valid++;
+            else if(s.charAt(i) == ')') valid--;
+            if(valid < 0) return false;
+        }
+        
+        return valid == 0;
+    }
+    
+    public Set<String> filter(Set<String> validExpressions){
+        Iterator<String> it = validExpressions.iterator();
+        Set<String> res = new HashSet<String>();
+        while(it.hasNext()){
+            String tmp = it.next();
+            if(isValid(tmp)) res.add(tmp);
+        }
+        
+        return res;
+    }
+}
