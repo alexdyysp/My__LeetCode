@@ -1,0 +1,53 @@
+class Solution {
+    public boolean isAdditiveNumber(String num) {
+        if (num == null || num.length() < 3) return false;
+
+        char[] chars = num.toCharArray();
+        long pre1, pre2;
+        
+        for(int i=0; i<chars.length/2; i++){
+            // 可以有'0'， 但不能有'01'
+            if(i>0 && chars[0] == '0') break;
+            pre1 = getNum(chars, 0, i);
+            
+            for(int j=i+1; j<chars.length; j++){
+                // 可以有'0'， 但不能有'01'
+                if(j>i+1 && chars[i+1] == '0') break;
+                pre2 = getNum(chars, i+1, j);
+                
+                // 找到第一个第二个数字后递归回溯
+                if (isAdditiveNumberCore(chars, j+1, pre1, pre2)) {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+
+    }
+    
+    private boolean isAdditiveNumberCore(char[] num, int start, long pre1, long pre2) {
+        long target = pre1 + pre2;
+        int length = String.valueOf(target).length();
+        if (getNum(num, start, start + length - 1) != target) {
+            return false;
+        }
+
+        start = start + length;
+        return start == num.length || isAdditiveNumberCore(num, start, pre2, target);
+    }
+
+ 
+    public long getNum(char[] chars, int start, int end){
+        if (end >= chars.length) return -1;
+        long res = 0; 
+        long index = 1;
+        while(end>=start){
+            res += (chars[end]-'0') * index;
+            index *= 10;
+            end--;
+        }
+        
+        return res;
+    }
+}
