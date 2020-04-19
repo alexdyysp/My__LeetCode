@@ -1,0 +1,32 @@
+class Solution{
+public String reformat(String s) {
+        List<Character> nums = new ArrayList<>();
+        List<Character> letters = new ArrayList<>();
+        for (int i = 0; i < s.length(); i++) {
+            char temp = s.charAt(i);
+            if (temp >= '0' && temp <= '9')
+                nums.add(temp);
+            else letters.add(temp);
+        }
+        int temp = letters.size() - nums.size();
+        if (temp >= 2 || temp <= -2)
+            return "";
+        StringBuilder res = new StringBuilder();
+        if (temp == 1) {
+            res.append(letters.get(letters.size() - 1));
+            return create(nums, letters, res, letters.size() - 2);
+        } else if (temp == -1) {
+            res.append(nums.get(nums.size() - 1));
+            return create(letters, nums, res, nums.size() - 2);
+        } else
+            return create(letters, nums, res, nums.size() - 1);
+    }
+
+    private String create(List<Character> one, List<Character> two, StringBuilder sb, int hi) {
+        for (int i = hi; i >= 0; i--) {
+            sb.append(one.get(i));
+            sb.append(two.get(i));
+        }
+        return sb.toString();
+    }
+}
