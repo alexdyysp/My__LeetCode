@@ -1,0 +1,46 @@
+class Solution {
+    public int getMaxRepetitions(String s1, int n1, String s2, int n2) {
+        char[] strs1 = s1.toCharArray(), strs2 = s2.toCharArray();
+        int len1 = strs1.length, len2 = strs2.length;
+        
+        //动态规划，求s2,从第一个开始到第n个开始，分别能走多少圈，结尾是哪个
+        int result = 0;
+
+        if(n1 == 0 || n2 == 0){
+            return result;
+        }
+        
+        //第i个字符开始和s1匹配，是s2能在单次s1的长度中出现的次数，以及下一次匹配s2开始的字符
+        int[][] dp = new int[len2][2];
+        int begin, tmpResult;
+        // init dp
+        for(int i=0; i<len2; i++){
+            begin = i;
+            tmpResult = 0;
+            for(int j=0; j<len1; j++){
+                if(strs1[j] == strs2[begin]) 
+                    begin++;
+                if(begin == len2){
+                    begin = 0;
+                    tmpResult++;
+                }
+            }
+            dp[i][0] = tmpResult;
+            dp[i][1] = begin;
+        }
+        for(int i=0; i<len2; i++){
+            for(int j=0; j<2; j++)
+              System.out.print(dp[i][j] + " ");
+            System.out.println();
+        }
+        // get result
+        begin = 0;
+        for(int i = 0 ; i < n1; i++){
+           result += dp[begin][0];
+           begin = dp[begin][1];
+        }
+        result = result/n2;
+
+        return result;
+    }
+}
