@@ -1,0 +1,35 @@
+class Solution {
+    public int numIslands(char[][] grid) {
+        if(grid.length==0) return 0;
+        int r = grid.length; int c = grid[0].length;
+        int res = 0;
+        for(int i=0; i<r; i++){
+            for(int j=0; j<c; j++){
+                if(grid[i][j]=='1'){
+                    res++;
+                    dfs(grid, i, j);
+                }
+            }
+        }
+        
+        return res;
+    }
+    
+    public void dfs(char[][] grid, int x, int y){
+        int r = grid.length; int c = grid[0].length;
+        // board
+        if(x < 0 || x >= r || y < 0 || y >= c || grid[x][y] != '1') return;
+        
+        // walk 
+        grid[x][y] = '2';
+        
+        // dfs
+        dfs(grid, x+1, y);
+        dfs(grid, x, y+1);
+        dfs(grid, x-1, y);
+        dfs(grid, x, y-1);
+        
+        return;
+        
+    }
+}
