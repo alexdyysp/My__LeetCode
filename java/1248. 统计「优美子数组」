@@ -1,0 +1,32 @@
+class Solution {
+    public int numberOfSubarrays(int[] nums, int k) {
+        int n = nums.length;
+        int res = 0;
+        int oddCnt = 0;
+        int left = 0; int right = 0;
+        while(right<n){
+            if((nums[right++] & 1) == 1) oddCnt++;
+            
+            if(oddCnt == k){
+                // 先将滑动窗口的右边界向右拓展，直到遇到下一个奇数（或出界）
+                int tmp = right;
+                while (right < n && (nums[right] & 1) == 0) right++;
+                int rightEvenCnt = right - tmp;
+                
+                int leftEvenCnt = 0;
+                while ((nums[left] & 1) == 0) {
+                    leftEvenCnt++;
+                    left++;
+                }
+                
+                res += (leftEvenCnt + 1) * (rightEvenCnt + 1);
+                
+                left++;
+                oddCnt--;
+
+            }
+        }
+        
+        return res;
+    }
+}
