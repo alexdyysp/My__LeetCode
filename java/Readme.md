@@ -18,7 +18,23 @@ for(int i=0; i<r+1; i++){
 
 ## 字符串String
 1. java一般需要化为char数组或者StringBuilder方便操作
-```
+```java
 char[] chars1 = s1.toCharArray();
 StringBuilder str = new StringBuilder(string);
+```
+
+## 二叉树BinaryTree
+1. BFS
+```java
+  Queue<TreeNode> nodeQueue = new LinkedList<TreeNode>();
+  while(!nodeQueue.isEmpty()){
+    int n = nodeQueue.size();
+    //...
+    for(int i=0; i<n; i++){
+        TreeNode tmp = nodeQueue.poll();
+        if(tmp.left!=null) nodeQueue.add(tmp.left);
+        if(tmp.right!=null) nodeQueue.add(tmp.right);
+    }
+    //...
+}
 ```
