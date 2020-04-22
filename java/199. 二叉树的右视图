@@ -1,0 +1,62 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+ 
+// BFS
+class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        if(root==null) return new ArrayList<Integer>();
+        Deque<TreeNode> nodeQueue = new LinkedList<TreeNode>();
+        List<Integer> res = new ArrayList<Integer>();
+        nodeQueue.add(root);
+        //res.add(root.val);
+        while(!nodeQueue.isEmpty()){
+            int n = nodeQueue.size();
+            TreeNode tmpres = nodeQueue.getLast();
+            res.add(tmpres.val);
+            for(int i=0; i<n; i++){
+                TreeNode tmp = nodeQueue.poll();
+                if(tmp.left!=null) nodeQueue.add(tmp.left);
+                if(tmp.right!=null) nodeQueue.add(tmp.right);
+            }
+            
+        }
+        
+        return res;
+    }
+}
+
+
+// dfs
+class Solution {
+    
+    List<Integer> res = new LinkedList<>();
+    int depth = 0;
+    
+    public List<Integer> rightSideView(TreeNode root) {
+
+        helper(root, 0);
+        return res;
+    }
+
+    private void helper(TreeNode root, int curDepth) {
+        if (root == null) {
+            return;
+        }
+        if (curDepth == depth) {
+            res.add(root.val);
+            depth++;
+        }
+
+        // 先找右节点，如果右节点存在的话，那么下一层的能看到的数据就是右节点
+        helper(root.right, curDepth+1);
+        // 相同的curDepth作为参数，如果右节点存在，那么左节点的数据不可能存入res
+        helper(root.left, curDepth+1);
+    }
+}
