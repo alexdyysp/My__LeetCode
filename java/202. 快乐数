@@ -1,0 +1,25 @@
+class Solution {
+    public boolean isHappy(int n) {
+        if(n==1) return true;
+        int fast = getNext(n);
+        int slow = n;
+        while(fast!=slow){
+            if(fast == 1) return true;
+            fast = getNext(getNext(fast));
+            slow = getNext(slow);
+        }
+        
+        return false;
+    }
+    
+    private int getNext(int n){
+        int totalSum = 0;
+        while(n > 0){
+            int x = n % 10;
+            totalSum += x * x;
+            n = n / 10;
+        }
+        
+        return totalSum;
+    }
+}
