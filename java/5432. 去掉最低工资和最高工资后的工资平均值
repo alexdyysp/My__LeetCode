@@ -1,0 +1,20 @@
+/*
+T: O(n)
+
+遍历时全加，同时寻找最大最小值
+最后减去最大最小值，取平均
+*/
+class Solution {
+    public double average(int[] salary) {
+        double ans = 0;
+        int n = salary.length-2;
+        int maxSalary=0; int minSalary=Integer.MAX_VALUE;
+        for(int num:salary){
+            maxSalary = Math.max(maxSalary, num);
+            minSalary = Math.min(minSalary, num);
+            ans += num ;
+        }
+
+        return (double) (ans - maxSalary - minSalary) / n;
+    }
+}
